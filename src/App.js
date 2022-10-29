@@ -1,11 +1,31 @@
 // import React from 'react'
 import Header from './components/Header'
+import Navbar from './components/Navbar'
+import Home from "./pages/Home"
+import News from "./pages/News"
+import Players from "./pages/Players"
+import Photos from "./pages/Photos"
+import Tournaments from "./pages/Tournaments"
+import SeasonRanking from "./pages/SeasonRanking"
+import AboutUs from "./pages/AboutUs"
+import {Route, Routes} from "react-router-dom"
 
 function App() {
   return (
-    <div className='container'>
-      <Header />
-    </div>
+    <>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/players" element={<Players />} />
+          <Route path="/photos" element={<Photos />} />
+          <Route path="/tournaments" element={<Tournaments />} />
+          <Route path="/season-ranking" element={<SeasonRanking />} />
+          <Route path="/about-us" element={<AboutUs />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
