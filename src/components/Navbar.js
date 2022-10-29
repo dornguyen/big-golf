@@ -1,10 +1,11 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import BigGolfLogo from '../pictures/big-golf-logo.jpg';
 
 export default function Navbar() {
   return (
     <nav className="nav">
       <Link to="/" className="logo">
-        Logo
+        <img className="logo-photo" src={BigGolfLogo} />
       </Link>
       <ul>
         <CustomLink to="/news">News</CustomLink>
