@@ -6,8 +6,10 @@ const Slideshow = ({slides}) => {
 
   const sliderStyles = {
     height: "100%",
+    width: "100%",
     position: "relative",
   }
+
   const slideStyles = {
     width: '100%',
     height: '100%',
