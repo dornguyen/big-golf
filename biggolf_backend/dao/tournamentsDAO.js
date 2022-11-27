@@ -71,4 +71,31 @@ export default class TournamentsDAO{
             return {error: e}
         }
     }
+
+    static async updateTournament(tournamentId, tName, tDate){
+        try{
+            const updateResponse = await tournaments.updateOne(
+                {_id: ObjectId(tournamentId)},
+                {$set: {tournamentName: tName, date: tDate }},
+            )
+            console.log("Found Tournament!")
+            return updateResponse
+        } catch(e){
+            console.error(`Unable to update tournament: ${e}`)
+            return {error: e}
+        }
+    }
+
+    static async deleteTournament(tournamentId){
+        try{
+            const tournamentResponse = await tournaments.deleteOne({
+                _id: ObjectId(tournamentId),
+            })
+
+            return tournamentResponse
+        } catch(e){
+            console.error(`Unable to delete tournament: ${e}`)
+            return {error: e}
+        }
+    }
 }

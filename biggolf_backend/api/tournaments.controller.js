@@ -44,4 +44,46 @@ export default class TournamentsController{
             res.status(500).json({error: e.message})
         }
     }
+
+    static async apiUpdateTournament(req, res, next){
+        try{
+            const tournamentId = req.body.tournament_id
+            console.log(tournamentId)
+            const tournamentName = req.body.tournamentName
+            const date = req.body.date
+
+            const tournamentResponse = await TournamentsDAO.updateTournament(
+                tournamentId,
+                tournamentName,
+                date,
+            )
+
+            var {error} = tournamentResponse
+            if(error){
+                res.status(400).json({error})
+            }
+
+            if(tournamentResponse.modifiedCount === 0){
+                throw new Error(
+                    "unablke to update tournament"
+                )
+            }
+            res.json({status: "success"})
+        } catch(e){
+            res.status(500).json({error: e.message})
+        }
+    }
+
+    static async apiDeleteTournament(req, res, next){
+        try{
+            const tournamentId = req.body.tournament_id
+            console.log(tournamentId)
+            const tournamentResponse = await TournamentsDAO.deleteTournament(
+                tournamentId,
+            )
+            res.json({status: "success"})
+        } catch(e){
+            res.status(500).json({error: e.message})
+        }
+    }
 }

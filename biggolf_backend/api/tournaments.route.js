@@ -8,5 +8,7 @@ router.route("/").get(TournamentsCtrl.apiGetTournaments)
 router
     .route("/tournament")
     .post(TournamentsCtrl.apiPostTournament)
-
+    .put(TournamentsCtrl.apiUpdateTournament)
+    .delete(TournamentsCtrl.apiDeleteTournament)
+    
 export default router
