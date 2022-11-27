@@ -10,7 +10,7 @@ export default class PlayersDAO{
         }
         try{
             console.log("Start loading players...")
-            const database = await conn.db(process.env.RESTPLAYERS_NS)
+            const database = await conn.db(process.env.RESTBIGGOLF_NS)
             players = database.collection("players")
             console.log("Finished loading players!")
         } catch(e){
@@ -88,7 +88,7 @@ export default class PlayersDAO{
             const playerResponse = await players.deleteOne({
                 _id: ObjectId(playerId),
             })
-            
+
             return playerResponse
         } catch(e){
             console.error(`Unable to delete player: ${e}`)
