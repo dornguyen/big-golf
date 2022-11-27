@@ -9,7 +9,7 @@ router.route("/").get(PlayersCtrl.apiGetPlayers)
 router
     .route("/player")
     .post(PlayersCtrl.apiPostPlayer)
-    //.put(PlayersCtrl.apiUpdatePlayer)
-    //.delete(PlayersCtrl.apiDeletePlayer)
+    .put(PlayersCtrl.apiUpdatePlayer)
+    .delete(PlayersCtrl.apiDeletePlayer)
 
 export default router

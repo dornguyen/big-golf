@@ -32,11 +32,54 @@ export default class PlayersController{
             const firstname = req.body.firstname
             const lastname = req.body.lastname
 
-            const PlayerResponse = await PlayersDAO.addPlayer(
+            const playerResponse = await PlayersDAO.addPlayer(
                 firstname,
                 lastname,
             )
             res.json({status: "Player successfully added"})
+        } catch(e){
+            res.status(500).json({error: e.message})
+        }
+    }
+
+    static async apiUpdatePlayer(req, res, next){
+        try{
+            const playerId = req.body.player_id
+            console.log(playerId)
+            const firstname = req.body.firstname
+            const lastname = req.body.lastname
+
+            const playerResponse = await PlayersDAO.updatePlayer(
+                playerId,
+                firstname,
+                lastname,
+            )
+
+            var {error} = playerResponse
+            if(error){
+                res.status(400).json({error})
+            }
+
+            if(playerResponse.modifiedCount === 0){
+                throw new Error(
+                    "unable to update player"
+                )
+            }
+
+            res.json({status: "success"})
+        } catch(e){
+            res.status(500).json({error: e.message})
+        }
+    }
+
+    static async apiDeletePlayer(req, res, next){
+        try{
+            const playerId = req.body.player_id
+            console.log(playerId)
+            const playerResponse = await PlayersDAO.deletePlayer(
+                playerId,
+            )
+            res.json({status: "success"})
         } catch(e){
             res.status(500).json({error: e.message})
         }

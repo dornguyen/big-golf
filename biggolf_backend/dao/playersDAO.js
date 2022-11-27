@@ -68,4 +68,31 @@ export default class PlayersDAO{
             return {error: e}
         }
     }
+
+    static async updatePlayer(playerId, fname, lname){
+        try{
+            const updateResponse = await players.updateOne(
+                {_id: ObjectId(playerId)},
+                {$set: {firstname: fname, lastname: lname}},
+            )
+            console.log("Found Player!")
+            return updateResponse
+        } catch(e){
+            console.error(`Unable to update player: ${e}`)
+            return {error: e}
+        }
+    }
+
+    static async deletePlayer(playerId){
+        try{
+            const playerResponse = await players.deleteOne({
+                _id: ObjectId(playerId),
+            })
+            
+            return playerResponse
+        } catch(e){
+            console.error(`Unable to delete player: ${e}`)
+            return {error: e}
+        }
+    }
 }
