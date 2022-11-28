@@ -6,6 +6,7 @@ import course_scorecards from "./api/routes/courseScorecards.route.js"
 import player_scorecards from "./api/routes/playerScorecards.route.js"
 import news from "./api/routes/news.route.js"
 import emails from "./api/routes/emails.route.js"
+import accounts from "./api/routes/accounts.route.js"
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use("/api/v1/course_scorecards", course_scorecards)
 app.use("/api/v1/player_scorecards", player_scorecards)
 app.use("/api/v1/news", news)
 app.use("/api/v1/emails", emails)
+app.use("/api/v1/accounts", accounts)
 
 app.use("*", (req, res) => res.status(404).json({error: "Not Found"}))
 

@@ -63,8 +63,8 @@ export default class EmailsDAO{
             }
             return await emails.insertOne(emailDoc)
         } catch(e){
-        console.error(`Unable to post email address: ${e}`)
-        return {error: e}
+            console.error(`Unable to post email address: ${e}`)
+            return {error: e}
         }
     }
 
