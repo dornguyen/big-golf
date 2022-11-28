@@ -3,7 +3,7 @@ import NewsDAO from "../../DAOs/newsDAO.js"
 
 export default class NewsController{
     static async apiGetNews(req, res, next){
-        const newsPerPage = req.query.playersPerPage ? parseInt(req.query.newsPerPage, 10) : 20
+        const newsPerPage = req.query.newsPerPage ? parseInt(req.query.newsPerPage, 10) : 20
         const page = req.query.page ? parseInt(req.query.page, 10) : 0
 
         let filters = {}
