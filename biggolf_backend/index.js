@@ -4,6 +4,8 @@ import dotenv from "dotenv"
 import PlayersDAO from "./DAOs/playersDAO.js"
 import TournamentsDAO from "./DAOs/tournamentsDAO.js"
 import CourseScorecardsDAO from "./DAOs/courseScorecardsDAO.js"
+import PlayerScorecardsDAO from "./DAOs/playerScorecardsDAO.js"
+
 dotenv.config()
 const MongoClient = mongodb.MongoClient
 
@@ -24,7 +26,7 @@ MongoClient.connect(
         await PlayersDAO.injectDB(client)
         await TournamentsDAO.injectDB(client)
         await CourseScorecardsDAO.injectDB(client)
-
+        await PlayerScorecardsDAO.injectDB(client)
         app.listen(port, () => {
             console.log(`listening on port ${port}`)
         })
