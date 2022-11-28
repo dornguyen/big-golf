@@ -1,8 +1,8 @@
 import express from "express"
 import cors from "cors"
-import players from "./api/players.route.js"
-import tournaments from "./api/tournaments.route.js"
-import course_scorecards from "./api/courseScorecards.route.js"
+import players from "./api/routes/players.route.js"
+import tournaments from "./api/routes/tournaments.route.js"
+import course_scorecards from "./api/routes/courseScorecards.route.js"
 const app = express()
 
 app.use(cors())

@@ -1,5 +1,5 @@
 import express from "express"
-import CourseScorecardCtrl from "./courseScorecards.controller.js"
+import CourseScorecardCtrl from "../controllers/courseScorecards.controller.js"
 
 const router = express.Router()
 
@@ -10,4 +10,5 @@ router
     .post(CourseScorecardCtrl.apiPostCourseScorecard)
     .put(CourseScorecardCtrl.apiUpdateCourseScorecard)
     .delete(CourseScorecardCtrl.apiDeleteCourseScorecard)
+
 export default router

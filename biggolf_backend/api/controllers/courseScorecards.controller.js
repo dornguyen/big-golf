@@ -1,4 +1,4 @@
-import CourseScorecardDAO from "../dao/courseScorecardsDAO.js"
+import CourseScorecardDAO from "../../DAOs/courseScorecardsDAO.js"
 
 export default class CourseScorecardController{
     static async apiGetCourseScorecards(req, res, next){

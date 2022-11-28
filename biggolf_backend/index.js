@@ -1,9 +1,9 @@
 import app from "./server.js"
 import mongodb from "mongodb"
 import dotenv from "dotenv"
-import PlayersDAO from "./dao/playersDAO.js"
-import TournamentsDAO from "./dao/tournamentsDAO.js"
-import CourseScorecardsDAO from "./dao/courseScorecardsDAO.js"
+import PlayersDAO from "./DAOs/playersDAO.js"
+import TournamentsDAO from "./DAOs/tournamentsDAO.js"
+import CourseScorecardsDAO from "./DAOs/courseScorecardsDAO.js"
 dotenv.config()
 const MongoClient = mongodb.MongoClient
 

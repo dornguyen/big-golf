@@ -1,4 +1,4 @@
-import PlayersDAO from "../dao/playersDAO.js"
+import PlayersDAO from "../../DAOs/playersDAO.js"
 
 export default class PlayersController{
     static async apiGetPlayers(req, res, next){

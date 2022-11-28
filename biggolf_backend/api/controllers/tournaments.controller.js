@@ -1,4 +1,4 @@
-import TournamentsDAO from "../dao/tournamentsDAO.js"
+import TournamentsDAO from "../../DAOs/tournamentsDAO.js"
 
 export default class TournamentsController{
     static async apiGetTournaments(req, res, next){

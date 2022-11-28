@@ -1,5 +1,5 @@
 import express from "express"
-import TournamentsCtrl from "./tournaments.controller.js"
+import TournamentsCtrl from "../controllers/tournaments.controller.js"
 
 const router = express.Router()
 
