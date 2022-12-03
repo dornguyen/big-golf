@@ -9,6 +9,7 @@ import Players from "./pages/public/Players"
 import AddPlayer from "./pages/private/AddPlayerPage"
 import Photos from "./pages/public/Photos"
 import Tournaments from "./pages/public/Tournaments"
+import AddTournament from "./pages/private/AddTournamentPage"
 import SeasonRanking from "./pages/public/SeasonRanking"
 import AboutUs from "./pages/public/AboutUs"
 import {Route, Routes} from "react-router-dom"
@@ -26,6 +27,7 @@ function App() {
           <Route path="/add-player-page" element={<AddPlayer />} />
           <Route path="/photos" element={<Photos />} />
           <Route path="/tournaments" element={<Tournaments />} />
+          <Route path="/add-tournament-page" element={<AddTournament />} />
           <Route path="/season-ranking" element={<SeasonRanking />} />
           <Route path="/about-us" element={<AboutUs />} />
         </Routes>

@@ -17,7 +17,8 @@ const AddNews = props => {
         setNewsDescription(event.target.value);
     }
 
-    const saveNewsItem = () => {
+    const saveNewsItem = (event) => {
+        event.preventDefault();
         var data = {
             subject: newsSubject,
             description: newsDescription
@@ -43,29 +44,35 @@ const AddNews = props => {
                 <h2>
                     Adding a News Item
                 </h2>
-                <div className="input-group col-lg-4">
-                    <input
-                        type="text"
-                        id="text"
-                        placeholder="Enter News Subject..."
-                        required
-                        value={newsSubject}
-                        onChange={handleSubjectInputChange}
-                        name="text"
-                    />
-                    <input
-                        type="text"
-                        id="text"
-                        placeholder="Enter News Description..."
-                        required
-                        value={newsDescription}
-                        onChange={handleDescriptionInputChange}
-                        name="text"
-                    />
-                    <button onClick={saveNewsItem} className="btn btn-success">
+                <form onSubmit={saveNewsItem}>
+                    <label>
+                        Enter Subject:
+                        <input
+                            type="text"
+                            id="newsSubject"
+                            placeholder="Enter News Subject..."
+                            value={newsSubject}
+                            onChange={handleSubjectInputChange}
+                            name="newsSubject"
+                            required
+                        />
+                    </label>
+                    <label>
+                        Enter Description:
+                        <input
+                            type="text"
+                            id="newsDescription"
+                            placeholder="Enter News Description..."
+                            value={newsDescription}
+                            onChange={handleDescriptionInputChange}
+                            name="newsDescription"
+                            required
+                        />
+                    </label>
+                    <button type="submit" className="btn btn-success">
                         Create News Item
                     </button>
-                </div>
+                </form>
             </div>
         </>
     )
