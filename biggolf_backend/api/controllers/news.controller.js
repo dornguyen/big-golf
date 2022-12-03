@@ -30,12 +30,20 @@ export default class NewsController{
 
     static async apiPostNewsItem(req, res, next){
         try{
-            const text = req.body.text
-            const date = new Date()
+            const date = new Date();
+            const month = date.getMonth()+1;
+            const day = date.getDay();
+            const year = date.getFullYear();
+
+            const subject = req.body.subject;
+            const description = req.body.description;
 
             const newsResponse = await NewsDAO.addNewsItem(
-                text,
-                date,
+                month,
+                day,
+                year,
+                subject,
+                description
             )
 
             res.json({status: "success"})
@@ -46,14 +54,23 @@ export default class NewsController{
 
     static async apiUpdateNewsItem(req, res, next){
         try{
-            const newsId = req.body.newsId
-            const text = req.body.text
             const date = new Date()
+            const month = date.getMonth()+1;
+            const day = date.getDay();
+            const year = date.getFullYear();
+            
+            const newsId = req.body.newsId;
+            const subject = req.body.subject;
+            const description = req.body.description;
+            
 
             const newsResponse = await NewsDAO.updateNewsItem(
                 newsId,
-                text,
-                date,
+                month,
+                day,
+                year,
+                subject,
+                description
             )
 
             var {error} = newsResponse
