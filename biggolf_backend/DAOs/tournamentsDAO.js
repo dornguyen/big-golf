@@ -59,11 +59,13 @@ export default class TournamentsDAO{
         }
     }
 
-    static async addTournament(name, date){
+    static async addTournament(course, month, day, year){
         try{
             const tournamentDoc = {
-                tournamentName: name,
-                date: date,
+                course: course,
+                month: month,
+                day: day,
+                year: year
             }
             return await tournaments.insertOne(tournamentDoc)
         } catch(e){
@@ -72,11 +74,11 @@ export default class TournamentsDAO{
         }
     }
 
-    static async updateTournament(tournamentId, tName, tDate){
+    static async updateTournament(tournamentId, tCourse, tMonth, tDay, tYear){
         try{
             const updateResponse = await tournaments.updateOne(
                 {_id: ObjectId(tournamentId)},
-                {$set: {tournamentName: tName, date: tDate }},
+                {$set: {course: tCourse, month: tMonth, day: tDay, year: tYear}},
             )
             console.log("Found Tournament!")
             return updateResponse

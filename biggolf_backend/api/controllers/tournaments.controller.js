@@ -32,12 +32,16 @@ export default class TournamentsController{
 
     static async apiPostTournament(req, res, next){
         try{
-            const tournamentName = req.body.tournamentName
-            const date = req.body.date
+            const course = req.body.course
+            const month = req.body.month
+            const day = req.body.day
+            const year = req.body.year
 
             const tournamentResponse = await TournamentsDAO.addTournament(
-                tournamentName,
-                date,
+                course,
+                month,
+                day,
+                year
             )
             res.json({status: "Tournament successfully added"})
         } catch(e){
@@ -49,13 +53,17 @@ export default class TournamentsController{
         try{
             const tournamentId = req.body.tournament_id
             console.log(tournamentId)
-            const tournamentName = req.body.tournamentName
-            const date = req.body.date
+            const course = req.body.course
+            const month = req.body.month
+            const day = req.body.day
+            const year = req.body.year
 
             const tournamentResponse = await TournamentsDAO.updateTournament(
                 tournamentId,
-                tournamentName,
-                date,
+                course,
+                month,
+                day,
+                year
             )
 
             var {error} = tournamentResponse
