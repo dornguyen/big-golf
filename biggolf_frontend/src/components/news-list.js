@@ -30,7 +30,11 @@ const NewsList = props => {
             <div>
                 {news.map((article) => {
                     return(
-                        <h4>{article.text} {article.date}</h4>
+                        <>
+                            <h2>{article.subject}</h2>
+                            <h3>{article.month}/{article.day}/{article.year}</h3>
+                            <h4>{article.description}</h4>
+                        </>
                     )
                 })}
             </div>

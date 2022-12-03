@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Navbar from './components/Navbar'
 import Home from "./pages/public/Home"
 import News from "./pages/public/News"
+import AddNews from "./pages/private/AddNewsPage"
 import Players from "./pages/public/Players"
 import AddPlayer from "./pages/private/AddPlayerPage"
 import Photos from "./pages/public/Photos"
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/news" element={<News />} />
+          <Route path="/add-news-page" element={<AddNews />} />
           <Route path="/players" element={<Players />} />
           <Route path="/add-player-page" element={<AddPlayer />} />
           <Route path="/photos" element={<Photos />} />
