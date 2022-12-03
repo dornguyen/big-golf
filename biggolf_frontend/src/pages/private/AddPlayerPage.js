@@ -3,49 +3,46 @@ import PlayerDataService from "../../services/playersService";
 import {Link} from "react-router-dom";
 
 const AddPlayer = props => {
-    let initialFirstNameState = ""
-    let initialLastNameState = ""
+    let initialPlayerState = "";
 
-    const [firstname, setFirstName] = useState(initialFirstNameState);
-    const [lastname, setLastName] = useState(initialLastNameState);
-
-    const handleFirstNameInputChange = event => {
-        setFirstName(event.target.value);
+    const [player, setPlayer] = useState(initialPlayerState);
+    
+    const handleInputChange = event => {
+        setPlayer(event.target.value);
     }
 
-    const handleLastNameInputChange = event => {
-        setLastName(event.target.value);
-    }
-
-    function saveName() {
+    const savePlayer = () => {
         var data = {
-            firstname: firstname,
-            lastname: lastname,
+            name: player
         }
 
-        PlayerDataService.createName(data)
+        PlayerDataService.createPlayer(data)
             .then(response => {
                 console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
-            })
+            });
     };
 
     return(
         <div>
-            <input
-                type="text"
-                className="form-control"
-                id="text"
-                placeholder="Enter First Name..."
-                required
-                value={firstname}
-                onChange={handleFirstNameInputChange}
-                name="text"
-            />
+            <div className="input-group col-lg-4">
+                <input
+                    type="text"
+                    id="text"
+                    placeholder="Enter New Player Name..."
+                    required
+                    value={player}
+                    onChange={handleInputChange}
+                    name="text"
+                />
+                <button onClick={savePlayer} className="btn btn-success">
+                    Create Player
+                </button>
+            </div>
         </div>
     )
-
-     
 }
+
+export default AddPlayer;

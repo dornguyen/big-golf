@@ -6,7 +6,7 @@ const Players = () => {
   return (
     <>
       <h1>Players Page</h1>
-      <Link to={"/AddPlayerPage/"} className="btn btn-primary col-lg-5 mx-1 mb-1">
+      <Link to={"/add-player-page"} className="btn btn-primary col-lg-5 mx-1 mb-1">
           Add/Update Player
       </Link>
       <PlayersList />
