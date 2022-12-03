@@ -30,7 +30,7 @@ const TournamentsList = props => {
             <div>
                 {tournaments.map((tournament) => {
                     return(
-                        <h4>{tournament.tournamentName} {tournament.date}</h4>
+                        <h4>Course: {tournament.course} Date: {tournament.date}</h4>
                     )
                 })}
             </div>

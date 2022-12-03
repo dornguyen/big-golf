@@ -11,7 +11,8 @@ const AddPlayer = props => {
         setNewPlayer(event.target.value);
     }
 
-    const saveNewPlayer = () => {
+    const saveNewPlayer = (event) => {
+        event.preventDefault();
         var data = {
             name: newPlayer
         }
@@ -34,20 +35,23 @@ const AddPlayer = props => {
             </div>
             <div>
                 <h2>Adding a Player</h2>
-                <div className="input-group col-lg-4">
-                    <input
-                        type="text"
-                        id="text"
-                        placeholder="Enter New Player Name..."
-                        required
-                        value={newPlayer}
-                        onChange={handleNewPlayerInputChange}
-                        name="text"
-                    />
-                    <button onClick={saveNewPlayer} className="btn btn-success">
+                <form onSubmit={saveNewPlayer}>
+                    <label>
+                        Player Name:
+                        <input 
+                            type="text" 
+                            id="playerName" 
+                            placeholder="Enter Player Name..." 
+                            value={newPlayer} 
+                            onChange={handleNewPlayerInputChange}
+                            name="playerName"
+                            required
+                        />
+                    </label>
+                    <button type="submit" className="btn btn-success">
                         Create Player
                     </button>
-                </div>
+                </form>
             </div>
         </>
     )
