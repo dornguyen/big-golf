@@ -30,7 +30,7 @@ const PlayersList = props => {
             <div>
                 {players.map((player) => {
                     return(
-                        <h4>{player.firstname} {player.lastname}</h4>
+                        <h4>{player.name}</h4>
                     )
                 })}
             </div>

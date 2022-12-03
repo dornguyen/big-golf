@@ -29,12 +29,10 @@ export default class PlayersController{
 
     static async apiPostPlayer(req, res, next){
         try{
-            const firstname = req.body.firstname
-            const lastname = req.body.lastname
+            const fullname = req.body.name
 
             const playerResponse = await PlayersDAO.addPlayer(
-                firstname,
-                lastname,
+                fullname
             )
             res.json({status: "Player successfully added"})
         } catch(e){
@@ -46,13 +44,11 @@ export default class PlayersController{
         try{
             const playerId = req.body.player_id
             console.log(playerId)
-            const firstname = req.body.firstname
-            const lastname = req.body.lastname
+            const fullname = req.body.name
 
             const playerResponse = await PlayersDAO.updatePlayer(
                 playerId,
-                firstname,
-                lastname,
+                fullname,
             )
 
             var {error} = playerResponse

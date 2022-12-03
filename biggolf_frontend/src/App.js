@@ -1,13 +1,15 @@
-// import React from 'react'
+ import React from 'react'
+ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from './components/Header'
 import Navbar from './components/Navbar'
-import Home from "./pages/Home"
-import News from "./pages/News"
-import Players from "./pages/Players"
-import Photos from "./pages/Photos"
-import Tournaments from "./pages/Tournaments"
-import SeasonRanking from "./pages/SeasonRanking"
-import AboutUs from "./pages/AboutUs"
+import Home from "./pages/public/Home"
+import News from "./pages/public/News"
+import Players from "./pages/public/Players"
+import AddPlayer from "./pages/private/AddPlayerPage"
+import Photos from "./pages/public/Photos"
+import Tournaments from "./pages/public/Tournaments"
+import SeasonRanking from "./pages/public/SeasonRanking"
+import AboutUs from "./pages/public/AboutUs"
 import {Route, Routes} from "react-router-dom"
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/news" element={<News />} />
           <Route path="/players" element={<Players />} />
+          <Route path="/add-player-page" element={<AddPlayer />} />
           <Route path="/photos" element={<Photos />} />
           <Route path="/tournaments" element={<Tournaments />} />
           <Route path="/season-ranking" element={<SeasonRanking />} />

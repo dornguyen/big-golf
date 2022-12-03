@@ -56,11 +56,10 @@ export default class PlayersDAO{
         }
     }
 
-    static async addPlayer(fname, lname){
+    static async addPlayer(fullname){
         try{
             const playerDoc = {
-                firstname: fname,
-                lastname: lname,
+                name: fullname
             }
             return await players.insertOne(playerDoc)
         } catch(e){
@@ -69,11 +68,11 @@ export default class PlayersDAO{
         }
     }
 
-    static async updatePlayer(playerId, fname, lname){
+    static async updatePlayer(playerId, fullname){
         try{
             const updateResponse = await players.updateOne(
                 {_id: ObjectId(playerId)},
-                {$set: {firstname: fname, lastname: lname}},
+                {$set: {name: fullname}},
             )
             console.log("Found Player!")
             return updateResponse
