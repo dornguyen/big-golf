@@ -3,17 +3,17 @@ import PlayerDataService from "../../services/playersService";
 import {Link} from "react-router-dom";
 
 const AddPlayer = props => {
-    let initialPlayerState = "";
+    let initialNewPlayerState = "";
 
-    const [player, setPlayer] = useState(initialPlayerState);
-    
-    const handleInputChange = event => {
-        setPlayer(event.target.value);
+    const [newPlayer, setNewPlayer] = useState(initialNewPlayerState);
+
+    const handleNewPlayerInputChange = event => {
+        setNewPlayer(event.target.value);
     }
 
-    const savePlayer = () => {
+    const saveNewPlayer = () => {
         var data = {
-            name: player
+            name: newPlayer
         }
 
         PlayerDataService.createPlayer(data)
@@ -26,22 +26,30 @@ const AddPlayer = props => {
     };
 
     return(
-        <div>
-            <div className="input-group col-lg-4">
-                <input
-                    type="text"
-                    id="text"
-                    placeholder="Enter New Player Name..."
-                    required
-                    value={player}
-                    onChange={handleInputChange}
-                    name="text"
-                />
-                <button onClick={savePlayer} className="btn btn-success">
-                    Create Player
-                </button>
+        <>
+            <div>
+                <Link to={"/players"} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                    Back to Player List
+                </Link>
             </div>
-        </div>
+            <div>
+                <h2>Adding a Player</h2>
+                <div className="input-group col-lg-4">
+                    <input
+                        type="text"
+                        id="text"
+                        placeholder="Enter New Player Name..."
+                        required
+                        value={newPlayer}
+                        onChange={handleNewPlayerInputChange}
+                        name="text"
+                    />
+                    <button onClick={saveNewPlayer} className="btn btn-success">
+                        Create Player
+                    </button>
+                </div>
+            </div>
+        </>
     )
 }
 
