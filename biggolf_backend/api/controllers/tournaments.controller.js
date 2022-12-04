@@ -30,6 +30,21 @@ export default class TournamentsController{
         res.json(response)
     }
 
+    static async apiGetTournamentById(req, res, next){
+        try{
+            let id = req.params.id || {}
+            let tournament = await TournamentsDAO.getTournamentById(id)
+            if(!tournament){
+                res.status(404).json({error: "Not found"})
+                return
+            }
+            res.json(tournament)
+        } catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error: e})
+        }
+    }
+
     static async apiPostTournament(req, res, next){
         try{
             const course = req.body.course

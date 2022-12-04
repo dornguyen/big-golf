@@ -56,6 +56,22 @@ export default class NewsDAO{
         }
     }
 
+    static async getNewsItemById(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    },
+                },
+            ]
+            return await news.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getNewsItemById: ${e}`)
+            throw e
+        }
+    }
+
     static async addNewsItem(news_month, news_day, news_year, news_subject, news_description){
         try{
             const newsDoc = {

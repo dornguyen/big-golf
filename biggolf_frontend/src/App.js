@@ -3,12 +3,14 @@
 import Header from './components/Header'
 import Navbar from './components/Navbar'
 import Home from "./pages/public/Home"
+import SpecificNews from "./pages/public/SpecificNews";
 import News from "./pages/public/News"
 import AddNews from "./pages/private/AddNewsPage"
+import SpecificPlayer from "./pages/public/SpecificPlayer"
 import Players from "./pages/public/Players"
 import AddPlayer from "./pages/private/AddPlayerPage"
-import SpecificPlayer from "./pages/public/SpecificPlayer"
 import Photos from "./pages/public/Photos"
+import SpecificTournament from "./pages/public/SpecificTournament";
 import Tournaments from "./pages/public/Tournaments"
 import AddTournament from "./pages/private/AddTournamentPage"
 import SeasonRanking from "./pages/public/SeasonRanking"
@@ -23,6 +25,12 @@ function App() {
         <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route 
+              path="/news/:id"
+              render={(props) => (
+                <SpecificNews {...props} />
+              )}
+            />
             <Route path="/news" component={News} />
             <Route path="/add-news-page" component={AddNews} />
             <Route
@@ -34,6 +42,12 @@ function App() {
             <Route path="/players" component={Players} />
             <Route path="/add-player-page" component={AddPlayer} />
             <Route path="/photos" component={Photos} />
+            <Route
+              path="/tournaments/:id"
+              render={(props) => (
+                <SpecificTournament {...props} />
+              )}
+            />
             <Route path="/tournaments" component={Tournaments} />
             <Route path="/add-tournament-page" component={AddTournament} />
             <Route path="/season-ranking" component={SeasonRanking} />
