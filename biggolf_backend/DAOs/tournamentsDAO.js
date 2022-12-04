@@ -59,6 +59,22 @@ export default class TournamentsDAO{
         }
     }
 
+    static async getTournamentById(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    }
+                }
+            ]
+            return await tournaments.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getTournamentById: ${e}`)
+            throw e
+        }
+    }
+
     static async addTournament(course, date){
         try{
             const tournamentDoc = {
