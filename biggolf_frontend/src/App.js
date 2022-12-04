@@ -3,6 +3,7 @@
 import Header from './components/Header'
 import Navbar from './components/Navbar'
 import Home from "./pages/public/Home"
+import SpecificNews from "./pages/public/SpecificNews";
 import News from "./pages/public/News"
 import AddNews from "./pages/private/AddNewsPage"
 import SpecificPlayer from "./pages/public/SpecificPlayer"
@@ -24,6 +25,12 @@ function App() {
         <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route 
+              path="/news/:id"
+              render={(props) => (
+                <SpecificNews {...props} />
+              )}
+            />
             <Route path="/news" component={News} />
             <Route path="/add-news-page" component={AddNews} />
             <Route

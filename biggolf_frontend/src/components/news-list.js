@@ -34,6 +34,9 @@ const NewsList = props => {
                             <h2>{article.subject}</h2>
                             <h3>{article.month}/{article.day}/{article.year}</h3>
                             <h4>{article.description}</h4>
+                            <Link to={"/news/"+article._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                                View News Item
+                            </Link>
                         </>
                     )
                 })}

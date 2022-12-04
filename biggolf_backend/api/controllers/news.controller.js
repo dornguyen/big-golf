@@ -28,6 +28,21 @@ export default class NewsController{
         res.json(response)
     }
 
+    static async apiGetNewsItemById(req, res, next){
+        try{
+            let id = req.params.id || {}
+            let news = await NewsDAO.getNewsItemById(id)
+            if(!news){
+                res.status(404).json({error: "Not found"})
+                return
+            }
+            res.json(news)
+        } catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error: e})
+        }
+    }
+
     static async apiPostNewsItem(req, res, next){
         try{
             const date = new Date();

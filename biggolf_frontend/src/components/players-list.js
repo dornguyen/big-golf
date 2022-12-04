@@ -36,7 +36,6 @@ const PlayersList = props => {
                                 View Player Profile
                             </Link>
                         </div>
-                        
                     )
                 })}
             </div>
