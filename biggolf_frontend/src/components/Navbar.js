@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className="nav">
       <Link to="/" className="logo">
-        <img className="logo-photo" src={"http://localhost:3000/pictures/big-golf-logo.jpg"} />
+        <img className="logo-photo" src={"http://localhost:3001/pictures/big-golf-logo.jpg"} />
       </Link>
       <ul>
         <Link to="/news">News</Link>

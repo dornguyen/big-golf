@@ -25,14 +25,14 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/news" component={News} />
             <Route path="/add-news-page" component={AddNews} />
-            <Route path="/players" component={Players} />
-            <Route path="/add-player-page" component={AddPlayer} />
-            <Route 
+            <Route
               path="/players/:id"
               render={(props) => (
                 <SpecificPlayer {...props} />
               )}
             />
+            <Route path="/players" component={Players} />
+            <Route path="/add-player-page" component={AddPlayer} />
             <Route path="/photos" component={Photos} />
             <Route path="/tournaments" component={Tournaments} />
             <Route path="/add-tournament-page" component={AddTournament} />

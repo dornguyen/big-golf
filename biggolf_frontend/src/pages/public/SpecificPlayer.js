@@ -26,18 +26,16 @@ const SpecificPlayer = props => {
     }, [props.match.params.id]);
 
     return(
-        <h1>
-            THIS PLAYER
-        </h1>
-        // <div>
-        //     {player ? (
-        //         <div>
-        //             <h5>Player Name: {player.name}</h5>
-        //         </div>
-        //     ) : (
-        //         <p>No Player Yet</p>
-        //     )}
-        // </div>
+        <div>
+            {player ? (
+                <div>
+                    <h4>Player ID: {player._id}</h4>
+                    <h5>Player Name: {player.name}</h5>
+                </div>
+            ) : (
+                <p>No Player Yet</p>
+            )}
+        </div>
     )
 }
 export default SpecificPlayer;
