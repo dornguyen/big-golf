@@ -27,6 +27,21 @@ export default class PlayersController{
         res.json(response)
     }
 
+    static async apiGetPlayerById(req, res, next){
+        try{
+            let id = req.params.id || {}
+            let player = await PlayersDAO.getPlayerById(id)
+            if(!player){
+                res.status(404).json({error: "Not found"})
+                return
+            }
+            res.json(player)
+        } catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error: e})
+        }
+    }
+
     static async apiPostPlayer(req, res, next){
         try{
             const fullname = req.body.name

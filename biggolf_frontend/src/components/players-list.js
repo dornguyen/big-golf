@@ -30,7 +30,13 @@ const PlayersList = props => {
             <div>
                 {players.map((player) => {
                     return(
-                        <h4>{player.name}</h4>
+                        <div>
+                            <h4>{player.name}</h4>
+                            <Link to={"/players/"+player._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                                View Player Profile
+                            </Link>
+                        </div>
+                        
                     )
                 })}
             </div>
