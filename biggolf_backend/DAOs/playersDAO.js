@@ -56,6 +56,22 @@ export default class PlayersDAO{
         }
     }
 
+    static async getPlayerById(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    },
+                },
+            ]
+            return await players.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getPlayerById: ${e}`)
+            throw e
+        }
+    }
+
     static async addPlayer(fullname){
         try{
             const playerDoc = {
