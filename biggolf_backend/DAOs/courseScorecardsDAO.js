@@ -90,7 +90,7 @@ export default class CourseScorecardsDAO{
     static async addCourseScorecard(t_Id, holes){
         try{
             const courseScorecardDoc = {
-                tournamentId: t_Id,
+                tournamentId: ObjectId(t_Id),
                 par_holes: holes,
             }
             return await courseScorecards.insertOne(courseScorecardDoc)

@@ -66,7 +66,30 @@ export default class TournamentsDAO{
                     $match: {
                         _id: new ObjectId(id),
                     }
-                }
+                },
+                {
+                    $lookup: {
+                        from: "course_scorecards",
+                        let:{
+                            id: "$_id",
+                        },
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $eq: ["$tournamentId", "$$id"],
+                                    },
+                                },
+                            },
+                        ],
+                        as: "course_scorecards",
+                    },
+                },
+                {
+                    $addFields: {
+                        course_scorecards: "$course_scorecards",
+                    },
+                },
             ]
             return await tournaments.aggregate(pipeline).next()
         } catch(e){
