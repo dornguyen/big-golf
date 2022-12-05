@@ -58,12 +58,46 @@ export default class CourseScorecardsDAO{
         }
     }
 
-    static async addPlayerScorecard(courseScorecard_id, player_id, scores){
+    static async getPlayerScorecardById(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    },
+                },
+            ]
+            return await playerScorecards.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getPlayerScorecardById: ${e}`)
+            throw e
+        }
+    }
+
+    static async getPlayerScorecardByPlayerId(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        playerId: id
+                    },
+                },
+            ]
+            return await playerScorecards.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getPlayerScorecardByPlayerId: ${e}`)
+            throw e
+        }
+    }
+
+    static async addPlayerScorecard(courseScorecard_id, player_id, scores, handicap, classFlight){
         try{
             const playerScorecardDoc = {
                 courseScorecardId: courseScorecard_id,
                 playerId: player_id,
                 hole_scores: scores,
+                handicap: handicap,
+                classFlight: classFlight
             }
             return await playerScorecards.insertOne(playerScorecardDoc)
         } catch(e){
@@ -72,11 +106,11 @@ export default class CourseScorecardsDAO{
         }
     }
 
-    static async updatePlayerScorecard(playerScorecard_Id, scores){
+    static async updatePlayerScorecard(playerScorecard_Id, scores, handicap, classFlight){
         try{
             const updateResponse = await playerScorecards.updateOne(
                 {_id: ObjectId(playerScorecard_Id)},
-                {$set: {hole_scores: scores}},
+                {$set: {hole_scores: scores, handicap: handicap, classFlight: classFlight}},
             )
             console.log("Found Player Scorecard!")
             return updateResponse
