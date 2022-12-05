@@ -16,6 +16,7 @@ import AddTournament from "./pages/private/AddTournamentPage"
 import SeasonRanking from "./pages/public/SeasonRanking"
 import AboutUs from "./pages/public/AboutUs"
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import AddCourseScorecard from './pages/private/AddCourseScorecard';
 
 function App() {
   return (
@@ -43,11 +44,18 @@ function App() {
             <Route path="/add-player-page" component={AddPlayer} />
             <Route path="/photos" component={Photos} />
             <Route
+              path="/add-course-scorecard-page/:tournamentId"
+              render={(props) =>(
+                <AddCourseScorecard {...props} />
+              )}
+            />
+            <Route
               path="/tournaments/:id"
               render={(props) => (
                 <SpecificTournament {...props} />
               )}
             />
+            
             <Route path="/tournaments" component={Tournaments} />
             <Route path="/add-tournament-page" component={AddTournament} />
             <Route path="/season-ranking" component={SeasonRanking} />

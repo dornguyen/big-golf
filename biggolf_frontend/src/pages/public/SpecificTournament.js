@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import TournamentsDataService from "../../services/tournamentsService";
+import AddCourseScorecard from "../private/AddCourseScorecard";
 import {Link} from "react-router-dom";
 
 const SpecificTournament = props => {
@@ -28,15 +29,22 @@ const SpecificTournament = props => {
 
     return(
         <div>
+            
             {tournament ? (
-                <div>
-                    <h4>Tournament ID: {tournament._id}</h4>
-                    <h4>Tournament Name: {tournament.course}</h4>
-                    <h4>Tournament Date: {tournament.date}</h4>
-                </div>
+                <>
+                    <Link to={"/add-course-scorecard-page/"+tournament._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                        Add Course Scorecard
+                    </Link>
+                    <div>
+                        <h4>Tournament ID: {tournament._id}</h4>
+                        <h4>Tournament Name: {tournament.course}</h4>
+                        <h4>Tournament Date: {tournament.date}</h4>
+                    </div>
+                </>
             ) : (
-                <p>No Tournament Yet</p>
+                <p>No Tournament Selected</p>
             )}
+            
         </div>
     )
 }

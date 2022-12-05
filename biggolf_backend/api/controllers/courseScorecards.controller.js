@@ -27,6 +27,36 @@ export default class CourseScorecardController{
         res.json(response)
     }
 
+    static async apiGetCourseScorecardById(req, res, next){
+        try{
+            let id = req.params.id || {}
+            let courseScorecard = await CourseScorecardDAO.getCourseScorecardById(id)
+            if(!courseScorecard){
+                res.status(404).json({error: "Not found"})
+                return
+            }
+            res.json(courseScorecard)
+        } catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error: e})
+        }
+    }
+
+    static async apiGetCourseScorecardByTournamentId(req, res, next){
+        try{
+            let tournamentId = req.params.tournamentId || {}
+            let courseScorecard = await CourseScorecardDAO.getCourseScorecardByTournamentId(tournamentId)
+            if(!courseScorecard){
+                res.status(404).json({error: "Not found"})
+                return
+            }
+            res.json(courseScorecard)
+        } catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error: e})
+        }
+    }
+
     static async apiPostCourseScorecard(req, res, next){
         try{
             const tournamentId = req.body.tournamentId
