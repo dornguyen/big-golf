@@ -13,6 +13,10 @@ class PlayerScorecardService{
         return http.get(`/player_scorecards/tournamentId/${playerId}`)
     }
 
+    getScorecardsByCourseScorecardId(courseScorecardId){
+        return http.get(`/player_scorecards?page=0courseScorecardId=${courseScorecardId}`);
+    }
+
     createPlayerScorecard(data){
         return http.post("/player_scorecards/player-scorecard", data);
     }

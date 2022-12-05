@@ -3,13 +3,18 @@ import TournamentsDataService from "../../services/tournamentsService";
 import AddCourseScorecard from "../private/AddCourseScorecard";
 import CourseScorecard from "../../components/CourseScorecard";
 import {Link} from "react-router-dom";
+import PlayerScorecardsService from "../../services/playerScorecardsService";
+import TournamentResults from "../../components/TournamentResults";
+import tournamentsService from "../../services/tournamentsService";
 
 const SpecificTournament = (props) => {
+
     const initialTournamentState = {
         id: null,
         course: "",
         date: "",
         course_scorecards: [],
+        player_scorecards: []
     };
 
     const [tournament, setTournament] = useState(initialTournamentState);
@@ -18,15 +23,17 @@ const SpecificTournament = (props) => {
         TournamentsDataService.get(id)
             .then(response => {
                 setTournament(response.data);
+                
                 console.log(response.data);
             })
             .catch(e => {
                 console.log(e)
             });
+        
     };
 
     useEffect(() => {
-        getTournament(props.match.params.id);
+        getTournament(props.match.params.id);       
     }, [props.match.params.id]);
 
     return(
@@ -43,6 +50,13 @@ const SpecificTournament = (props) => {
                             Add Player Scores
                         </Link>
                         <CourseScorecard par_holes={tournament.course_scorecards[0].par_holes}/>
+                        <TournamentResults scorecards={tournament.player_scorecards}/>
+                        {/* {
+                            <div>{tournament.player_scorecards[0].playerId}</div>
+                        } */}
+                        <div>
+
+                        </div>
                     </div>
                 ) : (
                     <div>

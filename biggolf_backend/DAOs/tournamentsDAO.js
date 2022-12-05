@@ -86,8 +86,27 @@ export default class TournamentsDAO{
                     },
                 },
                 {
+                    $lookup: {
+                        from: "player_scorecards",
+                        let:{
+                            id: "$_id",
+                        },
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $eq: ["$tournamentId", id],
+                                    },
+                                },
+                            },
+                        ],
+                        as: "player_scorecards",
+                    },
+                },
+                {
                     $addFields: {
                         course_scorecards: "$course_scorecards",
+                        player_scorecards: "$player_scorecards",
                     },
                 },
             ]

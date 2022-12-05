@@ -28,9 +28,11 @@ export default class CourseScorecardsDAO{
         let query
         if(filters){
             if("courseScorecardId" in filters){
-                query = {$text: {$search: filters["courseScorecardId"]}}
+                query = {"courseScorecardId": {$eq: filters["courseScorecardId"]}}
             } else if("playerId" in filters){
-                query = {$text: {$search: filters["playerId"]}}
+                query = {"playerId": {$eq: filters["playerId"]}}
+            } else if("tournamentId" in filters){
+                query = {"tournamentId": {$eq: filters["tournamentId"]}}
             }
         }
 
@@ -90,11 +92,13 @@ export default class CourseScorecardsDAO{
         }
     }
 
-    static async addPlayerScorecard(courseScorecard_id, player_id, scores, handicap, classFlight){
+    static async addPlayerScorecard(courseScorecard_id, player_id, player_name, tournament_id, scores, handicap, classFlight){
         try{
             const playerScorecardDoc = {
                 courseScorecardId: courseScorecard_id,
                 playerId: player_id,
+                playerName: player_name,
+                tournamentId: tournament_id,
                 hole_scores: scores,
                 handicap: handicap,
                 classFlight: classFlight

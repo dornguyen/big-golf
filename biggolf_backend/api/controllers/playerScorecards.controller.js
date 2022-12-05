@@ -1,15 +1,18 @@
 import PlayerScorecardDAO from "../../DAOs/playerScorecardsDAO.js"
+import PlayersDAO from "../../DAOs/playersDAO.js"
 
 export default class PlayerScorecardController{
     static async apiGetPlayerScorecards(req, res, next){
         const playerScorecardsPerPage = req.query.playerScorecardsPerPage ? parseInt(req.query.playerScorecardsPerPage, 10) : 20
         const page = req.query.page ? parseInt(req.query.page, 10) : 0
 
-        let filters
+        let filters = {}
         if(req.query.courseScorecardId){
             filters.courseScorecardId = req.query.courseScorecardId
         } else if(req.query.playerId){
             filters.playerId = req.query.playerId
+        } else if(req.query.tournamentId){
+            filters.tournamentId = req.query.tournamentId
         }
 
         const {playerScorecardsList, totalNumPlayerScorecards} = await PlayerScorecardDAO.getPlayerScorecards({
@@ -47,7 +50,7 @@ export default class PlayerScorecardController{
     static async apiGetPlayerScorecardByPlayerId(req, res, next){
         try{
             let playerId = req.params.playerId || {}
-            let playerScorecard = await PlayerScorecardDAO.getPlayerScorecardByPlayerId(id)
+            let playerScorecard = await PlayerScorecardDAO.getPlayerScorecardByPlayerId(playerId)
             if(!playerScorecard){
                 res.status(404).json({error: "Not found"})
                 return
@@ -63,6 +66,9 @@ export default class PlayerScorecardController{
         try{
             const courseScorecardId = req.body.courseScorecardId
             const playerId = req.body.playerId
+            const player = await PlayersDAO.getPlayerById(req.body.playerId)
+            const playerName = player.name
+            const tournamentId = req.body.tournamentId
             const hole_scores = req.body.hole_scores
             const handicap = req.body.handicap
             const classFlight = req.body.classFlight
@@ -70,6 +76,8 @@ export default class PlayerScorecardController{
             const courseScorecardResponse = await PlayerScorecardDAO.addPlayerScorecard(
                 courseScorecardId,
                 playerId,
+                playerName,
+                tournamentId,
                 hole_scores,
                 handicap,
                 classFlight
