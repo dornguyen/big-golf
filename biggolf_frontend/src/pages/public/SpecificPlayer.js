@@ -6,6 +6,7 @@ const SpecificPlayer = props => {
     const initialPlayerState = {
         id: null,
         name: "",
+        player_scorecards: [],
     };
 
     const [player, setPlayer] = useState(initialPlayerState);

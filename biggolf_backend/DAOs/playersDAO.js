@@ -64,6 +64,27 @@ export default class PlayersDAO{
                         _id: new ObjectId(id),
                     },
                 },
+                {
+                    $lookup: {
+                        from: "player_scorecards",
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $eq: ["$playerId", id],
+                                    },
+                                },
+                            },
+                        ],
+                        as: "player_scorecards",
+                    },
+                },
+                {
+                    $addFields: {
+                        course_scorecards: "$course_scorecards",
+                        player_scorecards: "$player_scorecards",
+                    }
+                }
             ]
             return await players.aggregate(pipeline).next()
         } catch(e){
