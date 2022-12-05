@@ -49,58 +49,58 @@ const AddCourseScorecard = props => {
     const [hole_18, setHole18] = useState(initialParState);
 
     const handleNewHole1InputChange = event => {
-        setHole1(event.target.value);
+        setHole1(event.target.valueAsNumber);
     }
     const handleNewHole2InputChange = event => {
-        setHole2(event.target.value);
+        setHole2(event.target.valueAsNumber);
     }
     const handleNewHole3InputChange = event => {
-        setHole3(event.target.value);
+        setHole3(event.target.valueAsNumber);
     }
     const handleNewHole4InputChange = event => {
-        setHole4(event.target.value);
+        setHole4(event.target.valueAsNumber);
     }
     const handleNewHole5InputChange = event => {
-        setHole5(event.target.value);
+        setHole5(event.target.valueAsNumber);
     }
     const handleNewHole6InputChange = event => {
-        setHole6(event.target.value);
+        setHole6(event.target.valueAsNumber);
     }
     const handleNewHole7InputChange = event => {
-        setHole7(event.target.value);
+        setHole7(event.target.valueAsNumber);
     }
     const handleNewHole8InputChange = event => {
-        setHole8(event.target.value);
+        setHole8(event.target.valueAsNumber);
     }
     const handleNewHole9InputChange = event => {
-        setHole9(event.target.value);
+        setHole9(event.target.valueAsNumber);
     }
     const handleNewHole10InputChange = event => {
-        setHole10(event.target.value);
+        setHole10(event.target.valueAsNumber);
     }
     const handleNewHole11InputChange = event => {
-        setHole11(event.target.value);
+        setHole11(event.target.valueAsNumber);
     }
     const handleNewHole12InputChange = event => {
-        setHole12(event.target.value);
+        setHole12(event.target.valueAsNumber);
     }
     const handleNewHole13InputChange = event => {
-        setHole13(event.target.value);
+        setHole13(event.target.valueAsNumber);
     }
     const handleNewHole14InputChange = event => {
-        setHole14(event.target.value);
+        setHole14(event.target.valueAsNumber);
     }
     const handleNewHole15InputChange = event => {
-        setHole15(event.target.value);
+        setHole15(event.target.valueAsNumber);
     }
     const handleNewHole16InputChange = event => {
-        setHole16(event.target.value);
+        setHole16(event.target.valueAsNumber);
     }
     const handleNewHole17InputChange = event => {
-        setHole17(event.target.value);
+        setHole17(event.target.valueAsNumber);
     }
     const handleNewHole18InputChange = event => {
-        setHole18(event.target.value);
+        setHole18(event.target.valueAsNumber);
     }
 
     const saveCourseScorecard = (event) => {
