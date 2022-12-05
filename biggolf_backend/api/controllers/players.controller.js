@@ -36,6 +36,7 @@ export default class PlayersController{
                 return
             }
             res.json(player)
+            console.log(player)
         } catch(e){
             console.log(`api, ${e}`)
             res.status(500).json({error: e})

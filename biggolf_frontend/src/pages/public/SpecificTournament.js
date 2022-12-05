@@ -3,13 +3,18 @@ import TournamentsDataService from "../../services/tournamentsService";
 import AddCourseScorecard from "../private/AddCourseScorecard";
 import CourseScorecard from "../../components/CourseScorecard";
 import {Link} from "react-router-dom";
+import PlayerScorecardsService from "../../services/playerScorecardsService";
+import TournamentResults from "../../components/TournamentResults";
+import tournamentsService from "../../services/tournamentsService";
 
 const SpecificTournament = (props) => {
+
     const initialTournamentState = {
         id: null,
         course: "",
         date: "",
         course_scorecards: [],
+        player_scorecards: []
     };
 
     const [tournament, setTournament] = useState(initialTournamentState);
@@ -18,15 +23,17 @@ const SpecificTournament = (props) => {
         TournamentsDataService.get(id)
             .then(response => {
                 setTournament(response.data);
+                
                 console.log(response.data);
             })
             .catch(e => {
                 console.log(e)
             });
+        
     };
 
     useEffect(() => {
-        getTournament(props.match.params.id);
+        getTournament(props.match.params.id);       
     }, [props.match.params.id]);
 
     return(
@@ -35,11 +42,21 @@ const SpecificTournament = (props) => {
             <h4>Tournament ID: {tournament._id}</h4>
             <h4>Tournament Name: {tournament.course}</h4>
             <h4>Tournament Date: {tournament.date}</h4>
+            
             <div>
                 {tournament.course_scorecards.length === 1 ? (
                     <div>
-                        <h4>Test</h4>
+                        <Link to={"/add-player-scorecard-page/"+tournament._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                            Add Player Scores
+                        </Link>
                         <CourseScorecard par_holes={tournament.course_scorecards[0].par_holes}/>
+                        <TournamentResults scorecards={tournament.player_scorecards}/>
+                        {/* {
+                            <div>{tournament.player_scorecards[0].playerId}</div>
+                        } */}
+                        <div>
+
+                        </div>
                     </div>
                 ) : (
                     <div>

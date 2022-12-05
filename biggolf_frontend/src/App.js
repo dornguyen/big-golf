@@ -1,6 +1,6 @@
  import React from 'react'
  import "bootstrap/dist/css/bootstrap.min.css";
-import Header from './components/Header'
+//import Header from './components/Header'
 import Navbar from './components/Navbar'
 import Home from "./pages/public/Home"
 import SpecificNews from "./pages/public/SpecificNews";
@@ -17,6 +17,7 @@ import SeasonRanking from "./pages/public/SeasonRanking"
 import AboutUs from "./pages/public/AboutUs"
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import AddCourseScorecard from './pages/private/AddCourseScorecard';
+import AddPlayerScorecard from './pages/private/AddPlayerScorecard';
 
 function App() {
   return (
@@ -47,6 +48,12 @@ function App() {
               path="/add-course-scorecard-page/:tournamentId"
               render={(props) =>(
                 <AddCourseScorecard {...props} />
+              )}
+            />
+            <Route
+              path="/add-player-scorecard-page/:tournamentId"
+              render={(props) => (
+                <AddPlayerScorecard {...props} />
               )}
             />
             <Route
