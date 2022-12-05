@@ -35,13 +35,13 @@ const SpecificTournament = (props) => {
             <h4>Tournament ID: {tournament._id}</h4>
             <h4>Tournament Name: {tournament.course}</h4>
             <h4>Tournament Date: {tournament.date}</h4>
-            <Link to={"/add-player-scorecard-page/"+tournament._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
-                Add Player Scores
-            </Link>
+            
             <div>
                 {tournament.course_scorecards.length === 1 ? (
                     <div>
-                        <h4>Test</h4>
+                        <Link to={"/add-player-scorecard-page/"+tournament._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                            Add Player Scores
+                        </Link>
                         <CourseScorecard par_holes={tournament.course_scorecards[0].par_holes}/>
                     </div>
                 ) : (
