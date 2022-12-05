@@ -56,6 +56,37 @@ export default class CourseScorecardsDAO{
         }
     }
 
+    static async getCourseScorecardById(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    },
+                },
+            ]
+            return await courseScorecards.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getCourseScorecardById: ${e}`)
+            throw e
+        }
+    }
+
+    static async getCourseScorecardByTournamentId(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        tournamentId: id
+                    },
+                },
+            ]
+            return await courseScorecards.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getCourseScorecardById: ${e}`)
+        }
+    }
+
     static async addCourseScorecard(t_Id, holes){
         try{
             const courseScorecardDoc = {
