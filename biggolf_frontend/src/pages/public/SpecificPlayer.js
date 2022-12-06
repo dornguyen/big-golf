@@ -23,19 +23,6 @@ const SpecificPlayer = props => {
         
     };
 
-    function renderScores(){
-        const tableData = [];
-        let numOfPar3s=0;
-        for(let i = 0; i < player.player_scorecards.par_holes.length; i++){
-            if(player.player_scorecards.par_holes[i] === 3){
-                numOfPar3s++;
-            }
-        }
-        tableData.push(<td>{numOfPar3s}</td>)
-        return tableData;
-    }
-
-
     useEffect(() => {
         getPlayer(props.match.params.id);
     }, [props.match.params.id]);

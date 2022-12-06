@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from "react";
 import TournamentsDataService from "../../services/tournamentsService";
-import AddCourseScorecard from "../private/AddCourseScorecard";
 import CourseScorecard from "../../components/CourseScorecard";
-import {Link} from "react-router-dom";
-import PlayerScorecardsService from "../../services/playerScorecardsService";
 import TournamentResults from "../../components/TournamentResults";
-import tournamentsService from "../../services/tournamentsService";
+import {Link} from "react-router-dom";
+
 
 const SpecificTournament = (props) => {
 
