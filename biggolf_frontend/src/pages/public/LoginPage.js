@@ -3,10 +3,18 @@ import AccountDataService from "../../services/accountsService";
 const LoginPage = props => {
     let initialUsernameState = ""
     let initialPasswordState = ""
-
+    let initialUserState = {
+        username: "",
+        password: "",
+    }
     const [username, setUsername] = useState(initialUsernameState);
     const [password, setPassword] = useState(initialPasswordState);
+    //const [user, setUser] = useState(initialUserState);
 
+    let user = {
+        username: "",
+        password: "",
+    }
     const handleUsernameInputChange = event => {
         setUsername(event.target.value);
     }
@@ -19,11 +27,20 @@ const LoginPage = props => {
         AccountDataService.getByCredentials(username, password)
             .then(response => {
                 console.log(response.data)
+                user.username = username
+                user.password = password
+                console.log("username: " + user.username + "; password: " + user.password)
+                login()
             })
             .catch(e =>{
                 console.log(e);
             });
     };
+
+    const login = () => {
+        props.login(user)
+        props.history.push('/')
+    }
 
     return(
     <div className="submit-form">

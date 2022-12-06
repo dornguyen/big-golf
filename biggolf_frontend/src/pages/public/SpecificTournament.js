@@ -4,7 +4,6 @@ import CourseScorecard from "../../components/CourseScorecard";
 import TournamentResults from "../../components/TournamentResults";
 import {Link} from "react-router-dom";
 
-
 const SpecificTournament = (props) => {
 
     const initialTournamentState = {
@@ -35,7 +34,6 @@ const SpecificTournament = (props) => {
     }, [props.match.params.id]);
 
     return(
-        
         <div>
             <Link to={"/tournaments"} className="btn btn-primary col-lg-5 mx-1 mb-1">
                 Back to Tournament List

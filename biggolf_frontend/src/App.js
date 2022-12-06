@@ -23,11 +23,21 @@ import LoginPage from "./pages/public/LoginPage";
 
 function App() {
 
-  const[user, setUser] = React.useState(null);
+  const[user, setUser] = React.useState("");
+
+  async function login(user = null){
+    console.log("App.js, username: " + user.username)
+    setUser(user);
+  }
+
+  async function logout(){
+    setUser(null);
+    console.log("App.js, username: " + user.username)
+  }
   return (
     <>
     <Router>
-        <Navbar />
+        <Navbar user={user} logout={logout}/>
         <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
@@ -63,7 +73,7 @@ function App() {
             <Route
               path="/tournaments/:id"
               render={(props) => (
-                <SpecificTournament {...props} />
+                <SpecificTournament {...props} user={user} />
               )}
             />
             
@@ -71,7 +81,12 @@ function App() {
             <Route path="/add-tournament-page" component={AddTournament} />
             <Route path="/season-ranking" component={SeasonRanking} />
             <Route path="/about-us" component={AboutUs} />
-            <Route path="/login-page" component={LoginPage} />
+            <Route 
+              path="/login-page" 
+              render={(props) => (
+              <LoginPage {...props} user={user} login={login} />
+            )}
+            />
           </Switch>
         </div>
         <div id="footer">
