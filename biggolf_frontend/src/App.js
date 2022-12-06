@@ -70,7 +70,9 @@ function App() {
             <Route path="/about-us" component={AboutUs} />
           </Switch>
         </div>
-        <Footer />
+        <div id="footer">
+          <Footer />
+        </div>
       </Router>
     </>
   );

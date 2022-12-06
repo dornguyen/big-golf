@@ -61,7 +61,7 @@ const Home = () => {
           </tr>
         </table>
         <h1>Tournaments</h1>
-        <div>
+        <div id="homePageTournaments">
           <Card img="http://localhost:3000/pictures/brookside.jpg"
             title="Previous Tournament"
             description="Brookside, October 2022"
