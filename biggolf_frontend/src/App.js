@@ -2,6 +2,7 @@
  import "bootstrap/dist/css/bootstrap.min.css";
 //import Header from './components/Header'
 import Navbar from './components/Navbar'
+import Footer from "./components/Footer"
 import Home from "./pages/public/Home"
 import SpecificNews from "./pages/public/SpecificNews";
 import News from "./pages/public/News"
@@ -69,6 +70,7 @@ function App() {
             <Route path="/about-us" component={AboutUs} />
           </Switch>
         </div>
+        <Footer />
       </Router>
     </>
   );
