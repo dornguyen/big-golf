@@ -19,8 +19,11 @@ import AboutUs from "./pages/public/AboutUs"
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import AddCourseScorecard from './pages/private/AddCourseScorecard';
 import AddPlayerScorecard from './pages/private/AddPlayerScorecard';
+import LoginPage from "./pages/public/LoginPage";
 
 function App() {
+
+  const[user, setUser] = React.useState(null);
   return (
     <>
     <Router>
@@ -68,6 +71,7 @@ function App() {
             <Route path="/add-tournament-page" component={AddTournament} />
             <Route path="/season-ranking" component={SeasonRanking} />
             <Route path="/about-us" component={AboutUs} />
+            <Route path="/login-page" component={LoginPage} />
           </Switch>
         </div>
         <div id="footer">
