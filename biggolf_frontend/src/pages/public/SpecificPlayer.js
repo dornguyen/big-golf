@@ -11,12 +11,6 @@ const SpecificPlayer = props => {
     };
 
     const [player, setPlayer] = useState(initialPlayerState);
-    let numOfPar3s=0;
-    let numOfPar4s=0;
-    const numOfPar5s=0;
-    const scoreOnPar3s=0;
-    const scoreOnPar4s=0;
-    const scoreOnPar5s=0;
     const getPlayer = id => {
         PlayerDataService.get(id)
             .then(response => {
