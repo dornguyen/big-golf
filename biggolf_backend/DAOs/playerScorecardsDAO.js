@@ -92,10 +92,11 @@ export default class CourseScorecardsDAO{
         }
     }
 
-    static async addPlayerScorecard(courseScorecard_id, player_id, player_name, tournament_id, scores, handicap, classFlight){
+    static async addPlayerScorecard(courseScorecard_id, par_holes, player_id, player_name, tournament_id, scores, handicap, classFlight){
         try{
             const playerScorecardDoc = {
                 courseScorecardId: courseScorecard_id,
+                par_holes: par_holes,
                 playerId: player_id,
                 playerName: player_name,
                 tournamentId: tournament_id,
