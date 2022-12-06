@@ -1,6 +1,7 @@
 import CourseScorecardsDAO from "../../DAOs/courseScorecardsDAO.js"
 import PlayerScorecardDAO from "../../DAOs/playerScorecardsDAO.js"
 import PlayersDAO from "../../DAOs/playersDAO.js"
+import TournamentsDAO from "../../DAOs/tournamentsDAO.js"
 
 export default class PlayerScorecardController{
     static async apiGetPlayerScorecards(req, res, next){
@@ -66,12 +67,15 @@ export default class PlayerScorecardController{
     static async apiPostPlayerScorecard(req, res, next){
         try{
             const courseScorecardId = req.body.courseScorecardId
-            const course = await CourseScorecardsDAO.getCourseScorecardById(req.body.courseScorecardId)
-            const par_holes = course.par_holes
+            const courseScorecard = await CourseScorecardsDAO.getCourseScorecardById(req.body.courseScorecardId)
+            const par_holes = courseScorecard.par_holes
             const playerId = req.body.playerId
             const player = await PlayersDAO.getPlayerById(req.body.playerId)
             const playerName = player.name
             const tournamentId = req.body.tournamentId
+            const tournament = await TournamentsDAO.getTournamentById(req.body.tournamentId)
+            const course = tournament.course
+            const date = tournament.date
             const hole_scores = req.body.hole_scores
             const handicap = req.body.handicap
             const classFlight = req.body.classFlight
@@ -82,6 +86,8 @@ export default class PlayerScorecardController{
                 playerId,
                 playerName,
                 tournamentId,
+                course,
+                date,
                 hole_scores,
                 handicap,
                 classFlight
