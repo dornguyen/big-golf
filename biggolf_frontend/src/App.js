@@ -80,13 +80,13 @@ function App() {
             <Route
               path="/add-course-scorecard-page/:tournamentId"
               render={(props) =>(
-                <AddCourseScorecard {...props} />
+                <AddCourseScorecard {...props} user={user} />
               )}
             />
             <Route
               path="/add-player-scorecard-page/:tournamentId"
               render={(props) => (
-                <AddPlayerScorecard {...props} />
+                <AddPlayerScorecard {...props} user={user} />
               )}
             />
             <Route
@@ -102,7 +102,11 @@ function App() {
                 <Tournaments {...props} user={user} />
               ))} 
             />
-            <Route path="/add-tournament-page" component={AddTournament} />
+            <Route 
+              path="/add-tournament-page"
+              render={(props => (
+                <AddTournament {...props} user={user} />
+              ))} />
             <Route path="/season-ranking" component={SeasonRanking} />
             <Route path="/about-us" component={AboutUs} />
             <Route 

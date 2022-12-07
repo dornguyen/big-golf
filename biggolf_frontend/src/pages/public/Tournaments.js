@@ -7,11 +7,11 @@ const Tournaments = (props) => {
     <>
       <h1>Tournaments Page</h1>
       {props.user ? (
-        <Link to={"/add-tournament-page"} className="btn btn-primary col-lg-5 mx-1 mb-1">
+        <Link to={"/add-tournament-page"} user={props.user} className="btn btn-primary col-lg-5 mx-1 mb-1">
           Add Tournament
         </Link>
       ) : (<></>)}
-      <TournamentsList />
+      <TournamentsList user={props.user}/>
     </>
   )
 }

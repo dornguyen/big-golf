@@ -31,42 +31,48 @@ const AddTournament = props => {
             .catch(e => {
                 console.log(e);
             });
+        props.history.push('/tournaments')
     };
 
     return(
         <>
-            <div>
-                <Link to={"/tournaments"} className="btn btn-primary col-lg-5 mx-1 mb-1">
-                    Back to Tournament List
-                </Link>
-            </div>
-            <div>
-                <h2>
-                    Adding a Tournament
-                </h2>
-                <form onSubmit={saveTournament}>
-                    <input
-                        type="text"
-                        id="tournamentCourse"
-                        placeholder="Enter Tournament Course Name..."
-                        value={course}
-                        onChange={handleCourseInputChange}
-                        name="tournamentCourse"
-                        required
-                    />
-                    <input
-                        type="date"
-                        id="tournamentDate"
-                        value={date}
-                        onChange={handleDateInputChange}
-                        name="tournamentDate"
-                        required
-                    />
-                    <button type="submit" className="btn btn-success">
-                        Create Tournament
-                    </button>  
-                </form>
-            </div>
+        {props.user ? (
+            <>
+                <div>
+                    <Link to={"/tournaments"} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                        Back to Tournament List
+                    </Link>
+                </div>
+                <div>
+                    <h2>
+                        Adding a Tournament
+                    </h2>
+                    <form onSubmit={saveTournament}>
+                        <input
+                            type="text"
+                            id="tournamentCourse"
+                            placeholder="Enter Tournament Course Name..."
+                            value={course}
+                            onChange={handleCourseInputChange}
+                            name="tournamentCourse"
+                            required
+                        />
+                        <input
+                            type="date"
+                            id="tournamentDate"
+                            value={date}
+                            onChange={handleDateInputChange}
+                            name="tournamentDate"
+                            required
+                        />
+                        <button type="submit" className="btn btn-success">
+                            Create Tournament
+                        </button>  
+                    </form>
+                </div>
+            </>
+        ) : (<h4>Please login</h4>)
+        } 
         </>
     )
 }

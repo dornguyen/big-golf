@@ -157,7 +157,6 @@ const AddPlayerScorecard = props =>{
             handicap: handicap,
             classFlight: classFlight,
         }
-        //add logic to check if a player already has a score.
         PlayerScorecardDataService.createPlayerScorecard(data)
             .then(response => {
                 console.log(response.data);
@@ -165,10 +164,13 @@ const AddPlayerScorecard = props =>{
             .catch(e => {
                 console.log(e);
             });
+        props.history.push(`/tournaments/${props.match.params.tournamentId}`)
     };
 
     return(
         <>
+        {props.user ? (
+            <>
             <Link to={"/tournaments/"+tournament._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
                 Back to Tournament View
             </Link>
@@ -246,6 +248,8 @@ const AddPlayerScorecard = props =>{
             </div>
            </form>
             </div>
+            </>
+        ) : (<h4>Please login.</h4>)}
         </>
     )
 }

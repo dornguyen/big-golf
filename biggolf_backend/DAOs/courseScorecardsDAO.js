@@ -126,4 +126,16 @@ export default class CourseScorecardsDAO{
             return {error: e}
         }
     }
+
+    static async deleteCourseScorecardByTournamentId(tournamentId){
+        try{
+            const response = await courseScorecards.deleteOne({
+                tournamentId: tournamentId
+            })
+            return response
+        } catch(e){
+            console.error(`Unable to delete course scorecard by tournamentId: ${e}`)
+            return {error: e}
+        }
+    }
 }

@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import TournamentsDataService from "../../services/tournamentsService";
+import CourseScorecardService from "../../services/courseScorecardsService";
+import PlayerScorecardsService from "../../services/playerScorecardsService";
 import CourseScorecard from "../../components/CourseScorecard";
 import TournamentResults from "../../components/TournamentResults";
 import {Link} from "react-router-dom";
@@ -33,21 +35,59 @@ const SpecificTournament = (props) => {
         getTournament(props.match.params.id);       
     }, [props.match.params.id]);
 
+    const deleteTournament = (id) => {
+        CourseScorecardService.deleteCourseScorecard(tournament.course_scorecards[0]._id)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+        let player_scorecards_length = tournament.player_scorecards.length;
+        for(let i=0; i < player_scorecards_length; i++){
+            PlayerScorecardsService.deletePlayerScorecard(tournament.player_scorecards[i]._id)
+                .then(response =>{
+                    console.log(response.data)
+                })
+                .catch(e => {
+                    console.log(e)
+                })
+        }
+        TournamentsDataService.deleteTournament(props.match.params.id)
+            .then(response => {
+                setTournament(initialTournamentState)
+                console.log(response.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+        
+        props.history.push('/tournaments')
+    }
+
     return(
         <div>
             <Link to={"/tournaments"} className="btn btn-primary col-lg-5 mx-1 mb-1">
                 Back to Tournament List
             </Link>
-            <h4>Tournament ID: {tournament._id}</h4>
+            {props.user ? (
+                <Link to={"/tournaments"} onClick={deleteTournament} className="btn btn-danger">
+                    Delete Tournament
+                </Link>
+            ) : (
+                <></>
+            )}
             <h4>Tournament Name: {tournament.course}</h4>
             <h4>Tournament Date: {tournament.date}</h4>
             
             <div>
                 {tournament.course_scorecards.length === 1 ? (
                     <div>
-                        <Link to={"/add-player-scorecard-page/"+tournament._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
-                            Add Player Scores
-                        </Link>
+                        {props.user ? (
+                            <Link to={"/add-player-scorecard-page/"+tournament._id} user={props.user} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                                Add Player Scores
+                            </Link>
+                        ) : (<></>)}
                         <CourseScorecard par_holes={tournament.course_scorecards[0].par_holes}/>
                         <TournamentResults scorecards={tournament.player_scorecards}/>
                         <div>
@@ -56,9 +96,13 @@ const SpecificTournament = (props) => {
                     </div>
                 ) : (
                     <div>
-                        <Link to={"/add-course-scorecard-page/"+tournament._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
-                            Add Course Scorecard
-                        </Link>
+                        <h4>No Course Scorecard Yet...</h4>
+                        {props.user ? (
+                            <Link to={"/add-course-scorecard-page/"+tournament._id} user={props.user} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                                Add Course Scorecard
+                            </Link>
+                        ) : (<></>)
+                        }
                     </div>
                 )}
             </div>
