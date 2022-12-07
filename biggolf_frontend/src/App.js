@@ -21,6 +21,7 @@ import AddCourseScorecard from './pages/private/AddCourseScorecard';
 import AddPlayerScorecard from './pages/private/AddPlayerScorecard';
 import LoginPage from "./pages/public/LoginPage";
 import DeletePlayerScorecard from './pages/private/DeletePlayerScorecard';
+import MailingList from './pages/private/MailingList';
 
 function App() {
 
@@ -121,10 +122,16 @@ function App() {
               <LoginPage {...props} user={user} login={login} />
             )}
             />
+            <Route
+                path="/mailing-list"
+                render={(props) => (
+                  <MailingList {...props} user={user} />
+                )}
+            />
           </Switch>
         </div>
         <div id="footer">
-          <Footer />
+          <Footer user={user}/>
         </div>
       </Router>
     </>
