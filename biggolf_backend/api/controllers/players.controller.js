@@ -27,14 +27,27 @@ export default class PlayersController{
         res.json(response)
     }
 
+    static async apiGetPlayerById(req, res, next){
+        try{
+            let id = req.params.id || {}
+            let player = await PlayersDAO.getPlayerById(id)
+            if(!player){
+                res.status(404).json({error: "Not found"})
+                return
+            }
+            res.json(player)
+        } catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error: e})
+        }
+    }
+
     static async apiPostPlayer(req, res, next){
         try{
-            const firstname = req.body.firstname
-            const lastname = req.body.lastname
+            const fullname = req.body.name
 
             const playerResponse = await PlayersDAO.addPlayer(
-                firstname,
-                lastname,
+                fullname
             )
             res.json({status: "Player successfully added"})
         } catch(e){
@@ -46,13 +59,11 @@ export default class PlayersController{
         try{
             const playerId = req.body.player_id
             console.log(playerId)
-            const firstname = req.body.firstname
-            const lastname = req.body.lastname
+            const fullname = req.body.name
 
             const playerResponse = await PlayersDAO.updatePlayer(
                 playerId,
-                firstname,
-                lastname,
+                fullname,
             )
 
             var {error} = playerResponse
@@ -74,7 +85,7 @@ export default class PlayersController{
 
     static async apiDeletePlayer(req, res, next){
         try{
-            const playerId = req.body.player_id
+            const playerId = req.body.playerId
             console.log(playerId)
             const playerResponse = await PlayersDAO.deletePlayer(
                 playerId,

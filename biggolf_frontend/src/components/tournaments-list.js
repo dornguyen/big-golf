@@ -26,11 +26,15 @@ const TournamentsList = props => {
 
     return(
         <div>
-            <h1>List of Tournamnets from DB</h1>
             <div>
                 {tournaments.map((tournament) => {
                     return(
-                        <h4>{tournament.tournamentName} {tournament.date}</h4>
+                        <>
+                            <h4>Course: {tournament.course} Date: {tournament.date}</h4>
+                            <Link to={"/tournaments/"+tournament._id} user={props.user} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                                View Tournament Results
+                            </Link>
+                        </>
                     )
                 })}
             </div>

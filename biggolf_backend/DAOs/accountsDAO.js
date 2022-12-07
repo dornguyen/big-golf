@@ -56,6 +56,23 @@ export default class AccountsDAO{
         }
     }
 
+    static async getAccountByCredentials(username, password){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        username: username,
+                        password: password,
+                    }
+                }
+            ]
+            return await accounts.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getAccountByCredentials: ${e}`)
+            throw e
+        }
+    }
+
     static async addAccount(username, password){
         try{
             const accountDoc = {

@@ -56,11 +56,47 @@ export default class PlayersDAO{
         }
     }
 
-    static async addPlayer(fname, lname){
+    static async getPlayerById(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    },
+                },
+                {
+                    $lookup: {
+                        from: "player_scorecards",
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $eq: ["$playerId", id],
+                                    },
+                                },
+                            },
+                        ],
+                        as: "player_scorecards",
+                    },
+                },
+                {
+                    $addFields: {
+                        course_scorecards: "$course_scorecards",
+                        player_scorecards: "$player_scorecards",
+                    }
+                }
+            ]
+            return await players.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getPlayerById: ${e}`)
+            throw e
+        }
+    }
+
+    static async addPlayer(fullname){
         try{
             const playerDoc = {
-                firstname: fname,
-                lastname: lname,
+                name: fullname
             }
             return await players.insertOne(playerDoc)
         } catch(e){
@@ -69,11 +105,11 @@ export default class PlayersDAO{
         }
     }
 
-    static async updatePlayer(playerId, fname, lname){
+    static async updatePlayer(playerId, fullname){
         try{
             const updateResponse = await players.updateOne(
                 {_id: ObjectId(playerId)},
-                {$set: {firstname: fname, lastname: lname}},
+                {$set: {name: fullname}},
             )
             console.log("Found Player!")
             return updateResponse

@@ -54,3 +54,13 @@ body{
     width: 50px;
 }
 
+#footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#homePageTournaments{
+    margin-bottom: 80px;
+}
+

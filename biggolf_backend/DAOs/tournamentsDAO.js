@@ -59,10 +59,68 @@ export default class TournamentsDAO{
         }
     }
 
-    static async addTournament(name, date){
+    static async getTournamentById(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "course_scorecards",
+                        let:{
+                            id: "$_id",
+                        },
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $eq: ["$tournamentId", "$$id"],
+                                    },
+                                },
+                            },
+                        ],
+                        as: "course_scorecards",
+                    },
+                },
+                {
+                    $lookup: {
+                        from: "player_scorecards",
+                        let:{
+                            id: "$_id",
+                        },
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $eq: ["$tournamentId", id],
+                                    },
+                                },
+                            },
+                        ],
+                        as: "player_scorecards",
+                    },
+                },
+                {
+                    $addFields: {
+                        course_scorecards: "$course_scorecards",
+                        player_scorecards: "$player_scorecards",
+                    },
+                },
+            ]
+            return await tournaments.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getTournamentById: ${e}`)
+            throw e
+        }
+    }
+
+    static async addTournament(course, date){
         try{
             const tournamentDoc = {
-                tournamentName: name,
+                course: course,
                 date: date,
             }
             return await tournaments.insertOne(tournamentDoc)
@@ -72,11 +130,11 @@ export default class TournamentsDAO{
         }
     }
 
-    static async updateTournament(tournamentId, tName, tDate){
+    static async updateTournament(tournamentId, tCourse, tDate){
         try{
             const updateResponse = await tournaments.updateOne(
                 {_id: ObjectId(tournamentId)},
-                {$set: {tournamentName: tName, date: tDate }},
+                {$set: {course: tCourse, date: tDate }},
             )
             console.log("Found Tournament!")
             return updateResponse

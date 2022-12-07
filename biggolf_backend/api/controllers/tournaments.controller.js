@@ -30,13 +30,28 @@ export default class TournamentsController{
         res.json(response)
     }
 
+    static async apiGetTournamentById(req, res, next){
+        try{
+            let id = req.params.id || {}
+            let tournament = await TournamentsDAO.getTournamentById(id)
+            if(!tournament){
+                res.status(404).json({error: "Not found"})
+                return
+            }
+            res.json(tournament)
+        } catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error: e})
+        }
+    }
+
     static async apiPostTournament(req, res, next){
         try{
-            const tournamentName = req.body.tournamentName
+            const course = req.body.course
             const date = req.body.date
 
             const tournamentResponse = await TournamentsDAO.addTournament(
-                tournamentName,
+                course,
                 date,
             )
             res.json({status: "Tournament successfully added"})
@@ -49,12 +64,12 @@ export default class TournamentsController{
         try{
             const tournamentId = req.body.tournament_id
             console.log(tournamentId)
-            const tournamentName = req.body.tournamentName
+            const course = req.body.course
             const date = req.body.date
 
             const tournamentResponse = await TournamentsDAO.updateTournament(
                 tournamentId,
-                tournamentName,
+                course,
                 date,
             )
 
@@ -76,7 +91,7 @@ export default class TournamentsController{
 
     static async apiDeleteTournament(req, res, next){
         try{
-            const tournamentId = req.body.tournament_id
+            const tournamentId = req.body.tournamentId
             console.log(tournamentId)
             const tournamentResponse = await TournamentsDAO.deleteTournament(
                 tournamentId,

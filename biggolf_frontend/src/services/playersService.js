@@ -21,8 +21,8 @@ class PlayerDataService{
         return http.put("/players/player", data);
     }
 
-    deletePlayer(id, playerId){
-        return http.delete(`/players/player?id=${id}`, {data:{playerId: playerId}});
+    deletePlayer(playerId){
+        return http.delete("/players/player", {data:{playerId: playerId}});
     }
 }
 

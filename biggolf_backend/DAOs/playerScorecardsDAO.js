@@ -28,9 +28,11 @@ export default class CourseScorecardsDAO{
         let query
         if(filters){
             if("courseScorecardId" in filters){
-                query = {$text: {$search: filters["courseScorecardId"]}}
+                query = {"courseScorecardId": {$eq: filters["courseScorecardId"]}}
             } else if("playerId" in filters){
-                query = {$text: {$search: filters["playerId"]}}
+                query = {"playerId": {$eq: filters["playerId"]}}
+            } else if("tournamentId" in filters){
+                query = {"tournamentId": {$eq: filters["tournamentId"]}}
             }
         }
 
@@ -58,12 +60,51 @@ export default class CourseScorecardsDAO{
         }
     }
 
-    static async addPlayerScorecard(courseScorecard_id, player_id, scores){
+    static async getPlayerScorecardById(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    },
+                },
+            ]
+            return await playerScorecards.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getPlayerScorecardById: ${e}`)
+            throw e
+        }
+    }
+
+    static async getPlayerScorecardByPlayerId(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        playerId: id
+                    },
+                },
+            ]
+            return await playerScorecards.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getPlayerScorecardByPlayerId: ${e}`)
+            throw e
+        }
+    }
+
+    static async addPlayerScorecard(courseScorecard_id, par_holes, player_id, player_name, tournament_id, course, date, scores, handicap, classFlight){
         try{
             const playerScorecardDoc = {
                 courseScorecardId: courseScorecard_id,
+                par_holes: par_holes,
                 playerId: player_id,
+                playerName: player_name,
+                tournamentId: tournament_id,
+                course: course,
+                date: date,
                 hole_scores: scores,
+                handicap: handicap,
+                classFlight: classFlight
             }
             return await playerScorecards.insertOne(playerScorecardDoc)
         } catch(e){
@@ -72,11 +113,11 @@ export default class CourseScorecardsDAO{
         }
     }
 
-    static async updatePlayerScorecard(playerScorecard_Id, scores){
+    static async updatePlayerScorecard(playerScorecard_Id, scores, handicap, classFlight){
         try{
             const updateResponse = await playerScorecards.updateOne(
                 {_id: ObjectId(playerScorecard_Id)},
-                {$set: {hole_scores: scores}},
+                {$set: {hole_scores: scores, handicap: handicap, classFlight: classFlight}},
             )
             console.log("Found Player Scorecard!")
             return updateResponse

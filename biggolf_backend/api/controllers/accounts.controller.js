@@ -27,6 +27,22 @@ export default class AccountsController{
         
         res.json(response)
     }
+
+    static async apiGetAccountByCredentials(req, res, next){
+        try{
+            let username = req.params.username || {}
+            let password = req.params.password || {}
+            let account = await AccountsDAO.getAccountByCredentials(username, password)
+            if(!account){
+                res.status(404).json({error: "Not found"})
+                return
+            }
+            res.json(account)
+        } catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error: e})
+        }
+    }
     
     static async apiPostAccount(req, res, next){
         try{

@@ -56,10 +56,41 @@ export default class CourseScorecardsDAO{
         }
     }
 
+    static async getCourseScorecardById(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    },
+                },
+            ]
+            return await courseScorecards.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getCourseScorecardById: ${e}`)
+            throw e
+        }
+    }
+
+    static async getCourseScorecardByTournamentId(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        tournamentId: id
+                    },
+                },
+            ]
+            return await courseScorecards.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getCourseScorecardById: ${e}`)
+        }
+    }
+
     static async addCourseScorecard(t_Id, holes){
         try{
             const courseScorecardDoc = {
-                tournamentId: t_Id,
+                tournamentId: ObjectId(t_Id),
                 par_holes: holes,
             }
             return await courseScorecards.insertOne(courseScorecardDoc)
@@ -92,6 +123,18 @@ export default class CourseScorecardsDAO{
             return courseScorecardResponse
         } catch(e){
             console.error(`Unable to delete course scorecard: ${e}`)
+            return {error: e}
+        }
+    }
+
+    static async deleteCourseScorecardByTournamentId(tournamentId){
+        try{
+            const response = await courseScorecards.deleteOne({
+                tournamentId: tournamentId
+            })
+            return response
+        } catch(e){
+            console.error(`Unable to delete course scorecard by tournamentId: ${e}`)
             return {error: e}
         }
     }

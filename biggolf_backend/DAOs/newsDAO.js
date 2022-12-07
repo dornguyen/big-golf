@@ -56,11 +56,30 @@ export default class NewsDAO{
         }
     }
 
-    static async addNewsItem(news_text, news_date){
+    static async getNewsItemById(id){
+        try{
+            const pipeline = [
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    },
+                },
+            ]
+            return await news.aggregate(pipeline).next()
+        } catch(e){
+            console.error(`Something went wrong in getNewsItemById: ${e}`)
+            throw e
+        }
+    }
+
+    static async addNewsItem(news_month, news_day, news_year, news_subject, news_description){
         try{
             const newsDoc = {
-                text: news_text,
-                date: news_date,
+                month: news_month,
+                day: news_day,
+                year: news_year,
+                subject: news_subject,
+                description: news_description,
             }
             return await news.insertOne(newsDoc)
         } catch(e){
@@ -69,11 +88,11 @@ export default class NewsDAO{
         }
     }
 
-    static async updateNewsItem(n_id, n_text, n_date){
+    static async updateNewsItem(n_id, n_month, n_day, n_year, n_subject, n_description){
         try{
             const updateResponse = await news.updateOne(
                 {_id: ObjectId(n_id)},
-                {$set: {text: n_text, date: n_date}},
+                {$set: {month: n_month, day: n_day, year: n_year, subject: n_subject, description: n_description}},
             )
             return updateResponse
         } catch(e){

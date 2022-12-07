@@ -4,7 +4,7 @@ import PlayersCtrl from "../controllers/players.controller.js"
 const router = express.Router()
 
 router.route("/").get(PlayersCtrl.apiGetPlayers)
-// router.route("/id/:id").get(PlayersCtrl.apiGetPlayerById)
+router.route("/id/:id").get(PlayersCtrl.apiGetPlayerById)
 
 router
     .route("/player")

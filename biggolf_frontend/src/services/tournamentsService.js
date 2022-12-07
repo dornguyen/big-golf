@@ -13,16 +13,16 @@ class TournamentDataService{
         return http.get(`/tournaments?${by}=${query}&page=${page}`);
     }
 
-    createPlayer(data){
+    createTournament(data){
         return http.post("/tournaments/tournament", data);
     }
 
-    updatePlayer(data){
+    updateTournament(data){
         return http.put("/tournaments/tournament", data);
     }
 
-    deletePlayer(id, tournamentId){
-        return http.delete(`/tournaments/tournament?id=${id}`, {data:{tournamentId: tournamentId}});
+    deleteTournament(tournamentId){
+        return http.delete(`/tournaments/tournament`, {data:{tournamentId: tournamentId}});
     }
 }
 
