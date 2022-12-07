@@ -20,6 +20,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import AddCourseScorecard from './pages/private/AddCourseScorecard';
 import AddPlayerScorecard from './pages/private/AddPlayerScorecard';
 import LoginPage from "./pages/public/LoginPage";
+import DeletePlayerScorecard from './pages/private/DeletePlayerScorecard';
 
 function App() {
 
@@ -90,12 +91,17 @@ function App() {
               )}
             />
             <Route
+              path="/delete-player-scorecard-page/:playerScorecardId"
+              render={(props) => (
+                <DeletePlayerScorecard {...props} user={user} />
+              )}
+            />
+            <Route
               path="/tournaments/:id"
               render={(props) => (
                 <SpecificTournament {...props} user={user} />
               )}
             />
-            
             <Route 
               path="/tournaments"
               render={(props => (

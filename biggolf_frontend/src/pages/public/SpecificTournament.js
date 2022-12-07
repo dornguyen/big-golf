@@ -89,7 +89,7 @@ const SpecificTournament = (props) => {
                             </Link>
                         ) : (<></>)}
                         <CourseScorecard par_holes={tournament.course_scorecards[0].par_holes}/>
-                        <TournamentResults scorecards={tournament.player_scorecards}/>
+                        <TournamentResults user={props.user} scorecards={tournament.player_scorecards}/>
                         <div>
 
                         </div>
