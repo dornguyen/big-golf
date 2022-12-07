@@ -17,8 +17,8 @@ class CourseScorecardService{
         return http.post("/course_scorecards/course-scorecard", data);
     }
 
-    deleteCourseScorecard(id, courseScorecardId){
-        return http.delete(`/course_scorecards/course-scorecard?id=${id}`, {data:{_id: courseScorecardId}})
+    deleteCourseScorecard(courseScorecardId){
+        return http.delete("/course_scorecards/course-scorecard", {data:{courseScorecard_id: courseScorecardId}})
     }
 }
 export default new CourseScorecardService();

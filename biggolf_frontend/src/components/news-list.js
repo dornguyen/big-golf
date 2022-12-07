@@ -26,14 +26,11 @@ const NewsList = props => {
 
     return (
         <div>
-            <h1>List of News from DB</h1>
             <div>
                 {news.map((article) => {
                     return(
                         <>
-                            <h2>{article.subject}</h2>
-                            <h3>{article.month}/{article.day}/{article.year}</h3>
-                            <h4>{article.description}</h4>
+                            <h2>{article.subject} - {article.month}/{article.day}/{article.year}</h2>
                             <Link to={"/news/"+article._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
                                 View News Item
                             </Link>

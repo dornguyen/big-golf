@@ -11,6 +11,7 @@ const AddCourseScorecard = props => {
         course: "",
         date: "",
     };
+
     const [tournament, setTournament] = useState(initialTournamentState);
 
     const getTournament = id => {
@@ -119,63 +120,70 @@ const AddCourseScorecard = props => {
             .catch(e => {
                 console.log(e);
             });
+        props.history.push(`/tournaments/${props.match.params.tournamentId}`)
     };
 
     return(
         <>
-        <Link to={"/tournaments/"+tournament._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
-            Back to Tournament View
-        </Link>
-        <h2>Adding a Course Scorecard for {tournament.course}</h2>
-           <form onSubmit={saveCourseScorecard}>
-            <table>
-                <tr>
-                    <th>Hole</th>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>8</td>
-                    <td>9</td>
-                    <td>10</td>
-                    <td>11</td>
-                    <td>12</td>
-                    <td>13</td>
-                    <td>14</td>
-                    <td>15</td>
-                    <td>16</td>
-                    <td>17</td>
-                    <td>18</td>
-                </tr>
-                <tr>
-                    <th>Par</th>
-                    <td><input type="number" min="3" max="5" id="hole_1" value={hole_1} onChange={handleNewHole1InputChange} name="hole_1" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_2" value={hole_2} onChange={handleNewHole2InputChange} name="hole_2" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_3" value={hole_3} onChange={handleNewHole3InputChange} name="hole_3" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_4" value={hole_4} onChange={handleNewHole4InputChange} name="hole_4" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_5" value={hole_5} onChange={handleNewHole5InputChange} name="hole_5" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_6" value={hole_6} onChange={handleNewHole6InputChange} name="hole_6" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_7" value={hole_7} onChange={handleNewHole7InputChange} name="hole_7" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_8" value={hole_8} onChange={handleNewHole8InputChange} name="hole_8" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_9" value={hole_9} onChange={handleNewHole9InputChange} name="hole_9" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_10" value={hole_10} onChange={handleNewHole10InputChange} name="hole_10" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_11" value={hole_11} onChange={handleNewHole11InputChange} name="hole_11" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_12" value={hole_12} onChange={handleNewHole12InputChange} name="hole_12" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_13" value={hole_13} onChange={handleNewHole13InputChange} name="hole_13" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_14" value={hole_14} onChange={handleNewHole14InputChange} name="hole_14" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_15" value={hole_15} onChange={handleNewHole15InputChange} name="hole_15" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_16" value={hole_16} onChange={handleNewHole16InputChange} name="hole_16" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_17" value={hole_17} onChange={handleNewHole17InputChange} name="hole_17" required /></td>
-                    <td><input type="number" min="3" max="5"id="hole_18" value={hole_18} onChange={handleNewHole18InputChange} name="hole_18" required /></td>
-                </tr>
-            </table>
-            <button type="submit" className="btn btn-success">
-                Create Course Scorecard
-            </button>
-           </form>
+        {props.user ? (
+            <>
+            <Link to={"/tournaments/"+tournament._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                Back to Tournament View
+            </Link>
+            <h2>Adding a Course Scorecard for {tournament.course}</h2>
+            <form onSubmit={saveCourseScorecard}>
+                <table>
+                    <tr>
+                        <th>Hole</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <th>Par</th>
+                        <td><input type="number" min="3" max="5" id="hole_1" value={hole_1} onChange={handleNewHole1InputChange} name="hole_1" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_2" value={hole_2} onChange={handleNewHole2InputChange} name="hole_2" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_3" value={hole_3} onChange={handleNewHole3InputChange} name="hole_3" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_4" value={hole_4} onChange={handleNewHole4InputChange} name="hole_4" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_5" value={hole_5} onChange={handleNewHole5InputChange} name="hole_5" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_6" value={hole_6} onChange={handleNewHole6InputChange} name="hole_6" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_7" value={hole_7} onChange={handleNewHole7InputChange} name="hole_7" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_8" value={hole_8} onChange={handleNewHole8InputChange} name="hole_8" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_9" value={hole_9} onChange={handleNewHole9InputChange} name="hole_9" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_10" value={hole_10} onChange={handleNewHole10InputChange} name="hole_10" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_11" value={hole_11} onChange={handleNewHole11InputChange} name="hole_11" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_12" value={hole_12} onChange={handleNewHole12InputChange} name="hole_12" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_13" value={hole_13} onChange={handleNewHole13InputChange} name="hole_13" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_14" value={hole_14} onChange={handleNewHole14InputChange} name="hole_14" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_15" value={hole_15} onChange={handleNewHole15InputChange} name="hole_15" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_16" value={hole_16} onChange={handleNewHole16InputChange} name="hole_16" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_17" value={hole_17} onChange={handleNewHole17InputChange} name="hole_17" required /></td>
+                        <td><input type="number" min="3" max="5"id="hole_18" value={hole_18} onChange={handleNewHole18InputChange} name="hole_18" required /></td>
+                    </tr>
+                </table>
+                <button type="submit" className="btn btn-success">
+                    Create Course Scorecard
+                </button>
+            </form>
+            </>
+        ) : (<h4>Please login.</h4>)
+        }
+        
         </> 
     )
 }

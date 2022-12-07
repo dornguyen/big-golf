@@ -111,4 +111,17 @@ export default class CourseScorecardController{
             res.status(500).json({error: e.message})
         }
     }
+
+    static async apiDeleteCourseScorecardByTournamentId(req, res, next){
+        try{
+            const tournamentId = req.body.tournamentId
+            console.log("tournamentId: " + tournamentId)
+            const response = await CourseScorecardDAO.deleteCourseScorecardByTournamentId(
+                tournamentId,
+            )
+            res.json({status: "success"})
+        } catch(e){
+            res.status(500).json({error: e.message})
+        }
+    }
 }

@@ -10,7 +10,7 @@ class PlayerScorecardService{
     }
 
     getByPlayerId(playerId){
-        return http.get(`/player_scorecards/tournamentId/${playerId}`)
+        return http.get(`/player_scorecards/playerId/${playerId}`)
     }
 
     getScorecardsByCourseScorecardId(courseScorecardId){
@@ -21,8 +21,8 @@ class PlayerScorecardService{
         return http.post("/player_scorecards/player-scorecard", data);
     }
 
-    deletePlayerScorecard(id, playerScorecardId){
-        return http.delete(`/player_scorecards/player-scorecard?id=${id}`, {data:{_id: playerScorecardId}})
+    deletePlayerScorecard(playerScorecardId){
+        return http.delete("/player_scorecards/player-scorecard", {data:{playerScorecardId: playerScorecardId}})
     }
 }
 export default new PlayerScorecardService();

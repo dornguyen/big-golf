@@ -17,8 +17,6 @@ In libero mi, bibendum vel feugiat at, eleifend eget ante. Quisque id pretium do
 
 In ut dolor vitae risus posuere elementum. Suspendisse potenti. Aliquam fringilla nunc vel orci egestas tempor. Aliquam eget porta diam. Morbi at ante rutrum, accumsan ligula vitae, volutpat diam. Nulla interdum quam aliquet augue interdum volutpat. Donec pellentesque, magna semper consectetur posuere, enim erat suscipit ligula, sit amet luctus lacus dolor vitae lectus. Etiam lectus purus, aliquet ac arcu eu, maximus vestibulum felis.
         </p>
-        <h1>Values</h1>
-        
       </div>
     </>
     

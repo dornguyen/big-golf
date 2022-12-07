@@ -21,8 +21,8 @@ class TournamentDataService{
         return http.put("/tournaments/tournament", data);
     }
 
-    deleteTournament(id, tournamentId){
-        return http.delete(`/tournaments/tournament?id=${id}`, {data:{tournamentId: tournamentId}});
+    deleteTournament(tournamentId){
+        return http.delete(`/tournaments/tournament`, {data:{tournamentId: tournamentId}});
     }
 }
 

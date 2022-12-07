@@ -19,59 +19,119 @@ import AboutUs from "./pages/public/AboutUs"
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import AddCourseScorecard from './pages/private/AddCourseScorecard';
 import AddPlayerScorecard from './pages/private/AddPlayerScorecard';
+import LoginPage from "./pages/public/LoginPage";
+import DeletePlayerScorecard from './pages/private/DeletePlayerScorecard';
+import MailingList from './pages/private/MailingList';
 
 function App() {
+
+  const[user, setUser] = React.useState("");
+
+  async function login(user = null){
+    setUser(user);
+  }
+
+  async function logout(){
+    setUser(null);
+    window.location.reload();
+  }
   return (
     <>
     <Router>
-        <Navbar />
+        <Navbar user={user} logout={logout}/>
         <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route 
               path="/news/:id"
               render={(props) => (
-                <SpecificNews {...props} />
+                <SpecificNews {...props} user={user} />
               )}
             />
-            <Route path="/news" component={News} />
-            <Route path="/add-news-page" component={AddNews} />
+            <Route 
+              path="/news" 
+              render={(props) => (
+                <News {...props} user={user} />
+              )}
+            />
+            <Route 
+              path="/add-news-page"
+              render={(props) => (
+                <AddNews {...props} user={user} />
+              )}
+            />
             <Route
               path="/players/:id"
               render={(props) => (
-                <SpecificPlayer {...props} />
+                <SpecificPlayer {...props} user={user} />
               )}
             />
-            <Route path="/players" component={Players} />
-            <Route path="/add-player-page" component={AddPlayer} />
+            <Route 
+              path="/players"
+              render={(props) => (
+                <Players {...props} user={user} />
+              )}
+            />
+            <Route 
+              path="/add-player-page"
+              render={(props) => (
+                <AddPlayer {...props} user={user} />
+              )} 
+            />
             <Route path="/photos" component={Photos} />
             <Route
               path="/add-course-scorecard-page/:tournamentId"
               render={(props) =>(
-                <AddCourseScorecard {...props} />
+                <AddCourseScorecard {...props} user={user} />
               )}
             />
             <Route
               path="/add-player-scorecard-page/:tournamentId"
               render={(props) => (
-                <AddPlayerScorecard {...props} />
+                <AddPlayerScorecard {...props} user={user} />
+              )}
+            />
+            <Route
+              path="/delete-player-scorecard-page/:playerScorecardId"
+              render={(props) => (
+                <DeletePlayerScorecard {...props} user={user} />
               )}
             />
             <Route
               path="/tournaments/:id"
               render={(props) => (
-                <SpecificTournament {...props} />
+                <SpecificTournament {...props} user={user} />
               )}
             />
-            
-            <Route path="/tournaments" component={Tournaments} />
-            <Route path="/add-tournament-page" component={AddTournament} />
+            <Route 
+              path="/tournaments"
+              render={(props => (
+                <Tournaments {...props} user={user} />
+              ))} 
+            />
+            <Route 
+              path="/add-tournament-page"
+              render={(props => (
+                <AddTournament {...props} user={user} />
+              ))} />
             <Route path="/season-ranking" component={SeasonRanking} />
             <Route path="/about-us" component={AboutUs} />
+            <Route 
+              path="/login-page" 
+              render={(props) => (
+              <LoginPage {...props} user={user} login={login} />
+            )}
+            />
+            <Route
+                path="/mailing-list"
+                render={(props) => (
+                  <MailingList {...props} user={user} />
+                )}
+            />
           </Switch>
         </div>
         <div id="footer">
-          <Footer />
+          <Footer user={user}/>
         </div>
       </Router>
     </>

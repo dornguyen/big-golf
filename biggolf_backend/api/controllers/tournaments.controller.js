@@ -91,7 +91,7 @@ export default class TournamentsController{
 
     static async apiDeleteTournament(req, res, next){
         try{
-            const tournamentId = req.body.tournament_id
+            const tournamentId = req.body.tournamentId
             console.log(tournamentId)
             const tournamentResponse = await TournamentsDAO.deleteTournament(
                 tournamentId,

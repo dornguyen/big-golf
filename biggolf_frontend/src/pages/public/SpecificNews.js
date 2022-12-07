@@ -25,13 +25,35 @@ const SpecificNews = props =>{
         getNews(props.match.params.id);
     }, [props.match.params.id]);
 
+    const deleteNewsItem = (id) => {
+        NewsDataService.deleteNews(id, props.match.params.id)
+            .then(response => {
+                setNews(initialNewsState)
+                console.log(response.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }
+
     return(
         <div>
+            <Link to={"/news"} className="btn btn-primary">
+                Back to News List
+            </Link>
+            {props.user ? (
+                <Link to={"/news"} onClick={deleteNewsItem} className="btn btn-danger col-lg-5 mx-1 mb-1">
+                    Delete News
+                </Link>
+            ) : (
+                <></>
+            )}
             {news ? (
                 <div>
                     <h4>News ID: {news._id}</h4>
                     <h4>News Subject: {news.subject}</h4>
-                    <h4>News Description: {news.description}</h4>
+                    <h5>News Description</h5>
+                    <p>{news.description}</p>
                 </div>
             ) : (
                 <p>No News Yet</p>
