@@ -28,7 +28,7 @@ const SpecificNews = props =>{
     const deleteNewsItem = (id) => {
         NewsDataService.deleteNews(id, props.match.params.id)
             .then(response => {
-                setNews(response.data)
+                setNews(initialNewsState)
                 console.log(response.data)
             })
             .catch(e => {
@@ -38,7 +38,7 @@ const SpecificNews = props =>{
 
     return(
         <div>
-            <Link to={"/news"} className="btn btn-primary col-lg-5 mx-1 mb-1">
+            <Link to={"/news"} className="btn btn-primary">
                 Back to News List
             </Link>
             {props.user ? (

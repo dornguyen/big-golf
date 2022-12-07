@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import PlayerDataService from "../../services/playersService";
+import PlayerScorecardsService from "../../services/playerScorecardsService";
 import {Link} from "react-router-dom";
 import PlayerStatistics from "../../components/playerStatistics";
 
@@ -27,11 +28,39 @@ const SpecificPlayer = props => {
         getPlayer(props.match.params.id);
     }, [props.match.params.id]);
 
+    const deletePlayer = (id) => {
+        let scorecardsLength = player.player_scorecards;
+        for(let i = 0; i < scorecardsLength; i++){
+            PlayerScorecardsService.deletePlayerScorecard(player.player_scorecards[i]._id)
+                .then(response => {
+                    console.log("Deleting Scorecard: " + response.data);
+                })
+                .catch(e => {
+                    console.log(e)
+                });
+        }
+        PlayerDataService.deletePlayer(props.match.params.id)
+            .then(response => {
+                setPlayer(initialPlayerState)
+                console.log(response.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }
+
     return(
         <div>
-            <Link to={"/players"} className="btn btn-primary col-lg-5 mx-1 mb-1">
+            <Link to={"/players"} className="btn btn-primary">
                 Back to Players List
             </Link>
+            {props.user ? (
+                <Link to={"/players"} onClick={deletePlayer} className="btn btn-danger">
+                    Delete Player
+                </Link>
+            ) : (
+                <></>
+            )}
             {player ? (
                 <div>
                     <h3>Player Name: {player.name}</h3>

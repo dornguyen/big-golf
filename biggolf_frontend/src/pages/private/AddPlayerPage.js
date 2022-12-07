@@ -24,20 +24,21 @@ const AddPlayer = props => {
             .catch(e => {
                 console.log(e);
             });
+        props.history.push('/players')
     };
 
     return(
         <>
-            <div>
-                <Link to={"/players"} className="btn btn-primary col-lg-5 mx-1 mb-1">
-                    Back to Player List
-                </Link>
-            </div>
-            <div>
-                <h2>Adding a Player</h2>
-                <form onSubmit={saveNewPlayer}>
-                    <label>
-                        Player Name:
+        {props.user ? (
+            <>
+                <div>
+                    <Link to={"/players"} className="btn btn-primary col-lg-5 mx-1 mb-1">
+                        Back to Player List
+                    </Link>
+                </div>
+                <div>
+                    <h2>Adding a Player</h2>
+                    <form onSubmit={saveNewPlayer}>
                         <input 
                             type="text" 
                             id="playerName" 
@@ -47,12 +48,13 @@ const AddPlayer = props => {
                             name="playerName"
                             required
                         />
-                    </label>
-                    <button type="submit" className="btn btn-success">
-                        Create Player
-                    </button>
-                </form>
-            </div>
+                        <button type="submit" className="btn btn-success">
+                            Create Player
+                        </button>
+                    </form>
+                </div>
+            </>
+        ) : (<h4>Please Login</h4>)}
         </>
     )
 }

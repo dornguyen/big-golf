@@ -85,7 +85,7 @@ export default class PlayersController{
 
     static async apiDeletePlayer(req, res, next){
         try{
-            const playerId = req.body.player_id
+            const playerId = req.body.playerId
             console.log(playerId)
             const playerResponse = await PlayersDAO.deletePlayer(
                 playerId,

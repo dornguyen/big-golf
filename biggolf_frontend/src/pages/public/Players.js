@@ -7,7 +7,7 @@ const Players = (props) => {
     <>
       <h1>Players Page</h1>
       {props.user ? (
-        <Link to={"/add-player-page"} className="btn btn-primary col-lg-5 mx-1 mb-1">
+        <Link to={"/add-player-page"} user={props.user} className="btn btn-primary col-lg-5 mx-1 mb-1">
             Add Player
         </Link>
       ) : (<></>)}

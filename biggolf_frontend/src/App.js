@@ -52,11 +52,16 @@ function App() {
                 <News {...props} user={user} />
               )}
             />
-            <Route path="/add-news-page" component={AddNews} />
+            <Route 
+              path="/add-news-page"
+              render={(props) => (
+                <AddNews {...props} user={user} />
+              )}
+            />
             <Route
               path="/players/:id"
               render={(props) => (
-                <SpecificPlayer {...props} />
+                <SpecificPlayer {...props} user={user} />
               )}
             />
             <Route 
@@ -65,7 +70,12 @@ function App() {
                 <Players {...props} user={user} />
               )}
             />
-            <Route path="/add-player-page" component={AddPlayer} />
+            <Route 
+              path="/add-player-page"
+              render={(props) => (
+                <AddPlayer {...props} user={user} />
+              )} 
+            />
             <Route path="/photos" component={Photos} />
             <Route
               path="/add-course-scorecard-page/:tournamentId"
