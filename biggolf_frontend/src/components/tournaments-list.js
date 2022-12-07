@@ -26,7 +26,6 @@ const TournamentsList = props => {
 
     return(
         <div>
-            <h1>List of Tournaments from DB</h1>
             <div>
                 {tournaments.map((tournament) => {
                     return(

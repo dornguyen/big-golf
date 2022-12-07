@@ -26,13 +26,12 @@ function App() {
   const[user, setUser] = React.useState("");
 
   async function login(user = null){
-    console.log("App.js, username: " + user.username)
     setUser(user);
   }
 
   async function logout(){
     setUser(null);
-    console.log("App.js, username: " + user.username)
+    window.location.reload();
   }
   return (
     <>
@@ -44,10 +43,15 @@ function App() {
             <Route 
               path="/news/:id"
               render={(props) => (
-                <SpecificNews {...props} />
+                <SpecificNews {...props} user={user} />
               )}
             />
-            <Route path="/news" component={News} />
+            <Route 
+              path="/news" 
+              render={(props) => (
+                <News {...props} user={user} />
+              )}
+            />
             <Route path="/add-news-page" component={AddNews} />
             <Route
               path="/players/:id"
@@ -55,7 +59,12 @@ function App() {
                 <SpecificPlayer {...props} />
               )}
             />
-            <Route path="/players" component={Players} />
+            <Route 
+              path="/players"
+              render={(props) => (
+                <Players {...props} user={user} />
+              )}
+            />
             <Route path="/add-player-page" component={AddPlayer} />
             <Route path="/photos" component={Photos} />
             <Route
@@ -77,7 +86,12 @@ function App() {
               )}
             />
             
-            <Route path="/tournaments" component={Tournaments} />
+            <Route 
+              path="/tournaments"
+              render={(props => (
+                <Tournaments {...props} user={user} />
+              ))} 
+            />
             <Route path="/add-tournament-page" component={AddTournament} />
             <Route path="/season-ranking" component={SeasonRanking} />
             <Route path="/about-us" component={AboutUs} />

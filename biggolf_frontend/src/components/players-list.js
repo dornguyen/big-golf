@@ -26,7 +26,6 @@ const PlayersList = props => {
 
     return(
         <div>
-            <h1>List of Players from DB</h1>
             <div>
                 {players.map((player) => {
                     return(

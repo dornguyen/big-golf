@@ -9,7 +9,6 @@ const LoginPage = props => {
     }
     const [username, setUsername] = useState(initialUsernameState);
     const [password, setPassword] = useState(initialPasswordState);
-    //const [user, setUser] = useState(initialUserState);
 
     let user = {
         username: "",
@@ -29,7 +28,6 @@ const LoginPage = props => {
                 console.log(response.data)
                 user.username = username
                 user.password = password
-                console.log("username: " + user.username + "; password: " + user.password)
                 login()
             })
             .catch(e =>{
