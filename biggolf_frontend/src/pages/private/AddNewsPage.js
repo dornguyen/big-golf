@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import NewsDataService from "../../services/newsService";
 import {Link} from "react-router-dom";
 
-const AddNews = props => {
+const AddNews = (props) => {
     let initialNewsSubjectState = ""
     let initialNewsDescriptionState = ""
 
@@ -31,6 +31,7 @@ const AddNews = props => {
             .catch(e => {
                 console.log(e);
             });
+        props.history.push('/news')
     };
 
     return(

@@ -7,7 +7,7 @@ const News = (props) => {
     <>
       <h1>News Page</h1>
       {props.user ? (
-        <Link to={"/add-news-page"} className="btn btn-primary col-lg-5 mx-1 mb-1">
+        <Link to={"/add-news-page"} user={props.user} className="btn btn-primary col-lg-5 mx-1 mb-1">
           Add News Item
         </Link>
       ) : (<></>)}
