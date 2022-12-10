@@ -30,7 +30,7 @@ const TournamentsList = props => {
                 {tournaments.map((tournament) => {
                     return(
                         <>
-                            <h4>Course: {tournament.course} Date: {tournament.date}</h4>
+                            <h4>{tournament.course} - {tournament.date}</h4>
                             <Link to={"/tournaments/"+tournament._id} user={props.user} className="btn btn-primary col-lg-5 mx-1 mb-1">
                                 View Tournament Results
                             </Link>

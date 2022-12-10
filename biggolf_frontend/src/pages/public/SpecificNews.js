@@ -50,7 +50,6 @@ const SpecificNews = props =>{
             )}
             {news ? (
                 <div>
-                    <h4>News ID: {news._id}</h4>
                     <h4>News Subject: {news.subject}</h4>
                     <h5>News Description</h5>
                     <p>{news.description}</p>
