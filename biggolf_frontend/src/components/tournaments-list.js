@@ -20,10 +20,6 @@ const TournamentsList = props => {
             });
     };
 
-    const refreshList = () => {
-        retrieveTournaments();
-    }
-
     return(
         <div>
             <div>
