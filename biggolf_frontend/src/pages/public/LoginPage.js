@@ -3,10 +3,7 @@ import AccountDataService from "../../services/accountsService";
 const LoginPage = props => {
     let initialUsernameState = ""
     let initialPasswordState = ""
-    let initialUserState = {
-        username: "",
-        password: "",
-    }
+    
     const [username, setUsername] = useState(initialUsernameState);
     const [password, setPassword] = useState(initialPasswordState);
 
