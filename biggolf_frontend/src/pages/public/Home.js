@@ -63,10 +63,10 @@ const Home = () => {
             <div className="card">
               <div className="card_body">
                   <img src="http://localhost:3000/pictures/brookside.jpg" />
-                  <h2 className="card_title">"Previous Tournament"</h2>
-                  <p className="card_description">"Brookside, October 2022"</p>
+                  <h2 className="card_title">Register for Upcoming Tournament</h2>
+                  <p className="card_description">Brookside, October 2022</p>
                   <a target="_blank" href={"https://docs.google.com/forms/d/e/1FAIpQLScoQbntrCW1focasgr68P5H0Jszw9snYqDX5iL0IiGtXrhmkA/viewform?usp=sf_link"} className="btn btn-primary">
-                    "View Results"
+                    Register Now!
                   </a>
               </div>
             </div>
